@@ -1,0 +1,38 @@
+body,html {padding: 0; margin: 0;}
+
+/*.row	{}*/
+
+.grid1,
+.grid2,
+.grid3,
+.grid4,
+.grid5,
+.grid6,
+.grid7,
+.grid8,
+.grid9,
+.grid10,
+.grid11,
+.grid12 {
+float: left;
+margin-left: 1%;
+margin-right: 1%;
+margin-top: 20px;
+background-color: #eee;
+text-align: center;
+padding: 20px 0;
+}
+
+.grid1	{width: 6.33%;}
+.grid2	{width: 14.66%;}
+.grid3	{width: 23%;}
+.grid4	{width: 31.33%;}
+.grid5	{width: 39.66%;}
+.grid6	{width: 48%;}
+.grid7	{width: 56.33%;}
+.grid8	{width: 64.66%;}
+.grid9	{width: 73%;}
+.grid10	{width: 81.33%;}
+.grid11	{width: 89.66%;}
+.grid12 	{width: 98%;}
+

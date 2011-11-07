@@ -1,0 +1,192 @@
+/* `Grid >> Global */
+.grid_1, .grid_2, .grid_3, .grid_4, .grid_5, .grid_6, .grid_7, .grid_8,
+.grid_9, .grid_10, .grid_11, .grid_12, .grid_13, .grid_14, .grid_15, .grid_16
+		{display: inline; float: left; margin-left: 10px; margin-right: 10px;}
+.fixed12 .grid_3, .fixed16 .grid_4 {width: 220px;}
+.fixed12 .grid_6, .fixed16 .grid_8 {width: 460px;}
+.fixed12 .grid_9, .fixed16 .grid_12 {width: 700px;}
+.fixed12 .grid_12, .fixed16 .grid_16 {width: 940px;}
+
+/* `Grid >> Children (Alpha ~ First, Omega ~ Last) */
+.alpha	{margin-left: 0;}
+.omega	{margin-right: 0;}
+
+/* `Grid >> 12 Columns */
+.fixed12 .grid_1	{width: 60px;}
+.fixed12 .grid_2	{width: 140px;}
+.fixed12 .grid_4	{width: 300px;}
+.fixed12 .grid_5	{width: 380px;}
+.fixed12 .grid_7	{width: 540px;}
+.fixed12 .grid_8	{width: 620px;}
+.fixed12 .grid_10	{width: 780px;}
+.fixed12 .grid_11	{width: 860px;}
+
+/* `Grid >> 16 Columns */
+.fixed16 .grid_1	{width: 40px;}
+.fixed16 .grid_2	{width: 100px;}
+.fixed16 .grid_3	{width: 160px;}
+.fixed16 .grid_5	{width: 280px;}
+.fixed16 .grid_6	{width: 340px;}
+.fixed16 .grid_7	{width: 400px;}
+.fixed16 .grid_9	{width: 520px;}
+.fixed16 .grid_10	{width: 580px;}
+.fixed16 .grid_11	{width: 640px;}
+.fixed16 .grid_13	{width: 760px;}
+.fixed16 .grid_14	{width: 820px;}
+.fixed16 .grid_15	{width: 880px;}
+
+/* `Prefix Extra Space >> Global */
+.fixed12 .prefix_3, .fixed16 .prefix_4	{padding-left: 240px;}
+.fixed12 .prefix_6, .fixed16 .prefix_8	{padding-left: 480px;}
+.fixed12 .prefix_9, .fixed16 .prefix_12	{padding-left: 720px;}
+
+/* `Prefix Extra Space >> 12 Columns */
+.fixed12 .prefix_1	{padding-left: 80px;}
+.fixed12 .prefix_2	{padding-left: 160px;}
+.fixed12 .prefix_4	{padding-left: 320px;}
+.fixed12 .prefix_5	{padding-left: 400px;}
+.fixed12 .prefix_7	{padding-left: 560px;}
+.fixed12 .prefix_8	{padding-left: 640px;}
+.fixed12 .prefix_10	{padding-left: 800px;}
+.fixed12 .prefix_11	{padding-left: 880px;}
+
+/* `Prefix Extra Space >> 16 Columns */
+.fixed16 .prefix_1	{padding-left: 60px;}
+.fixed16 .prefix_2	{padding-left: 120px;}
+.fixed16 .prefix_3	{padding-left: 180px;}
+.fixed16 .prefix_5	{padding-left: 300px;}
+.fixed16 .prefix_6	{padding-left: 360px;}
+.fixed16 .prefix_7	{padding-left: 420px;}
+.fixed16 .prefix_9	{padding-left: 540px;}
+.fixed16 .prefix_10	{padding-left: 600px;}
+.fixed16 .prefix_11	{padding-left: 660px;}
+.fixed16 .prefix_13	{padding-left: 780px;}
+.fixed16 .prefix_14	{padding-left: 840px;}
+.fixed16 .prefix_15	{padding-left: 900px;}
+
+/* `Suffix Extra Space >> Global */
+.fixed12 .suffix_3, .fixed16 .suffix_4	{padding-right: 240px;}
+.fixed12 .suffix_6, .fixed16 .suffix_8	{padding-right: 480px;}
+.fixed12 .suffix_9, .fixed16 .suffix_12	{padding-right: 720px;}
+
+/* `Suffix Extra Space >> 12 Columns */
+.fixed12 .suffix_1	{padding-right: 80px;}
+.fixed12 .suffix_2	{padding-right: 160px;}
+.fixed12 .suffix_4	{padding-right: 320px;}
+.fixed12 .suffix_5	{padding-right: 400px;}
+.fixed12 .suffix_7	{padding-right: 560px;}
+.fixed12 .suffix_8	{padding-right: 640px;}
+.fixed12 .suffix_10	{padding-right: 800px;}
+.fixed12 .suffix_11	{padding-right: 880px;}
+
+/* `Suffix Extra Space >> 16 Columns */
+.fixed16 .suffix_1	{padding-right: 60px;}
+.fixed16 .suffix_2	{padding-right: 120px;}
+.fixed16 .suffix_3	{padding-right: 180px;}
+.fixed16 .suffix_5	{padding-right: 300px;}
+.fixed16 .suffix_6	{padding-right: 360px;}
+.fixed16 .suffix_7	{padding-right: 420px;}
+.fixed16 .suffix_9	{padding-right: 540px;}
+.fixed16 .suffix_10	{padding-right: 600px;}
+.fixed16 .suffix_11	{padding-right: 660px;}
+.fixed16 .suffix_13	{padding-right: 780px;}
+.fixed16 .suffix_14	{padding-right: 840px;}
+.fixed16 .suffix_15	{padding-right: 900px;}
+
+
+
+/***** spaceless grid *****/
+/* `Grid >> Global */
+.grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8,
+.grid9, .grid10, .grid11, .grid12, .grid13, .grid14, .grid15, .grid16
+		{display: inline; float: left;}
+.fixed12 .grid3, .fixed16 .grid4 {width: 240px;}
+.fixed12 .grid6, .fixed16 .grid8 {width: 480px;}
+.fixed12 .grid9, .fixed16 .grid12 {width: 720px;}
+.fixed12 .grid12, .fixed16 .grid16 {width: 960px;}
+
+/* `Grid >> Children (Alpha ~ First, Omega ~ Last) */
+.alpha	{margin-left: 0;}
+.omega	{margin-right: 0;}
+
+/* `Grid >> 12 Columns */
+.fixed12 .grid1	{width: 80px;}
+.fixed12 .grid2	{width: 160px;}
+.fixed12 .grid4	{width: 320px;}
+.fixed12 .grid5	{width: 400px;}
+.fixed12 .grid7	{width: 560px;}
+.fixed12 .grid8	{width: 640px;}
+.fixed12 .grid10	{width: 800px;}
+.fixed12 .grid11	{width: 880px;}
+
+/* `Grid >> 16 Columns */
+.fixed16 .grid1	{width: 60px;}
+.fixed16 .grid2	{width: 120px;}
+.fixed16 .grid3	{width: 180px;}
+.fixed16 .grid5	{width: 300px;}
+.fixed16 .grid6	{width: 360px;}
+.fixed16 .grid7	{width: 420px;}
+.fixed16 .grid9	{width: 540px;}
+.fixed16 .grid10	{width: 600px;}
+.fixed16 .grid11	{width: 660px;}
+.fixed16 .grid13	{width: 780px;}
+.fixed16 .grid14	{width: 840px;}
+.fixed16 .grid15	{width: 900px;}
+
+/* `Prefix Extra Space >> Global */
+.fixed12 .prefix3, .fixed16 .prefix4	{padding-left: 240px;}
+.fixed12 .prefix6, .fixed16 .prefix8	{padding-left: 480px;}
+.fixed12 .prefix9, .fixed16 .prefix12	{padding-left: 720px;}
+
+/* `Prefix Extra Space >> 12 Columns */
+.fixed12 .prefix1	{padding-left: 80px;}
+.fixed12 .prefix2	{padding-left: 160px;}
+.fixed12 .prefix4	{padding-left: 320px;}
+.fixed12 .prefix5	{padding-left: 400px;}
+.fixed12 .prefix7	{padding-left: 560px;}
+.fixed12 .prefix8	{padding-left: 640px;}
+.fixed12 .prefix10	{padding-left: 800px;}
+.fixed12 .prefix11	{padding-left: 880px;}
+
+/* `Prefix Extra Space >> 16 Columns */
+.fixed16 .prefix1	{padding-left: 60px;}
+.fixed16 .prefix2	{padding-left: 120px;}
+.fixed16 .prefix3	{padding-left: 180px;}
+.fixed16 .prefix5	{padding-left: 300px;}
+.fixed16 .prefix6	{padding-left: 360px;}
+.fixed16 .prefix7	{padding-left: 420px;}
+.fixed16 .prefix9	{padding-left: 540px;}
+.fixed16 .prefix10	{padding-left: 600px;}
+.fixed16 .prefix11	{padding-left: 660px;}
+.fixed16 .prefix13	{padding-left: 780px;}
+.fixed16 .prefix14	{padding-left: 840px;}
+.fixed16 .prefix15	{padding-left: 900px;}
+
+/* `Suffix Extra Space >> Global */
+.fixed12 .suffix3, .fixed16 .suffix4	{padding-right: 240px;}
+.fixed12 .suffix6, .fixed16 .suffix8	{padding-right: 480px;}
+.fixed12 .suffix9, .fixed16 .suffix12	{padding-right: 720px;}
+
+/* `Suffix Extra Space >> 12 Columns */
+.fixed12 .suffix1	{padding-right: 80px;}
+.fixed12 .suffix2	{padding-right: 160px;}
+.fixed12 .suffix4	{padding-right: 320px;}
+.fixed12 .suffix5	{padding-right: 400px;}
+.fixed12 .suffix7	{padding-right: 560px;}
+.fixed12 .suffix8	{padding-right: 640px;}
+.fixed12 .suffix10	{padding-right: 800px;}
+.fixed12 .suffix11	{padding-right: 880px;}
+
+/* `Suffix Extra Space >> 16 Columns */
+.fixed16 .suffix1	{padding-right: 60px;}
+.fixed16 .suffix2	{padding-right: 120px;}
+.fixed16 .suffix3	{padding-right: 180px;}
+.fixed16 .suffix5	{padding-right: 300px;}
+.fixed16 .suffix6	{padding-right: 360px;}
+.fixed16 .suffix7	{padding-right: 420px;}
+.fixed16 .suffix9	{padding-right: 540px;}
+.fixed16 .suffix10	{padding-right: 600px;}
+.fixed16 .suffix11	{padding-right: 660px;}
+.fixed16 .suffix13	{padding-right: 780px;}
+.fixed16 .suffix14	{padding-right: 840px;}
+.fixed16 .suffix15	{padding-right: 900px;}
