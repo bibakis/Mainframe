@@ -2,7 +2,7 @@
 /**
  * The primary directory where all shared resources reside
  */  
-define('COMMONPATH', 'common/');
+define('COMMONPATH', 'libs/common/');
 	
 	
 /**
