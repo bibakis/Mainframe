@@ -16,7 +16,7 @@
  *
  * @subpackage	Controllers
  */
-class Example extends CI_Controller {
+class Example extends MY_Controller {
 
 	function __construct()
 	{
