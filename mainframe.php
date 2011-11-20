@@ -34,9 +34,9 @@ if ( ! function_exists('load_class'))
 
 		$name = FALSE;
 
-		// Look for the class first in the native system/libraries folder
-		// thenin the local application/libraries folder
-		foreach (array(BASEPATH, APPPATH, COMMONPATH) as $path)
+		// Look for the class first in the local application/libraries folder
+		// then in the native system/libraries folder
+		foreach (array(COMMONPATH, APPPATH, BASEPATH) as $path)
 		{
 			if (file_exists($path.$directory.'/'.$class.'.php'))
 			{
@@ -52,16 +52,7 @@ if ( ! function_exists('load_class'))
 		}
 
 		// Is the request a class extension?  If so we load it too
-		if (file_exists(APPPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php'))
-		{
-			$name = config_item('subclass_prefix').$class;
-
-			if (class_exists($name) === FALSE)
-			{
-				require(APPPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php');
-			}
-		}
-		elseif (file_exists(COMMONPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php'))
+		if (file_exists(COMMONPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php'))
 		{
 			$name = config_item('subclass_prefix').$class;
 
@@ -69,6 +60,15 @@ if ( ! function_exists('load_class'))
 			{
 				require(COMMONPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php');
 			}		
+		}
+		elseif (file_exists(APPPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php'))
+		{
+			$name = config_item('subclass_prefix').$class;
+
+			if (class_exists($name) === FALSE)
+			{
+				require(APPPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php');
+			}
 		}
 
 		// Did we find the class?
