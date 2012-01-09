@@ -1,0 +1,13 @@
+Mainframe		
+
+*PHP*
+codeigniter		2.10
+
+*Javascript*
+jQuery
+
+*CSS*
+Mainframe CSS		0.3
+1920.gs			0.1
+
+*Others*

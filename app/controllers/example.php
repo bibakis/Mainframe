@@ -36,6 +36,14 @@ class Example extends MY_Controller {
 	{
 		echo $this->minify->combine_directory('libs/ci-minify/test/css');
 	}
+
+	function test()
+	{
+		//phpinfo(INFO_MODULES);
+		damn (get_loaded_extensions());
+		//echo PHP_OS   ;
+	}
+
 }
 
 /* End of file example.php */
