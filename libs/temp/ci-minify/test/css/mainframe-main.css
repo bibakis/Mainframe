@@ -1,0 +1,144 @@
+/* 
+ * Mainframe CSS framework v 0.2
+ * Released 4 or August 2009
+ * Author: Vangelis Bibakis, http://bibakis.com
+ * License: Creative Commons Attribution-Share Alike 3.0 Unported License
+ * License at: http://creativecommons.org/licenses/by-sa/3.0/
+ * 
+ * Uses parts of other open source software:
+ * 960 grid system: http://960.gs/
+ * YUI Grids CSS: http://developer.yahoo.com/yui/grids/
+ *
+ * Bugs ? Feature requests ? 
+ * My email is at my site on the "About me" page.
+**/
+
+/* Reset (You shouldn't edit this) */
+html	{color: #000; background: #FFF;}
+body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, ul, ol, li, 
+pre, code, form, fieldset, legend, input, button, textarea, 
+p, blockquote, th, td {margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; text-align: left;}
+ul, ol, li	{margin: 0 0 0.1em 1em;}
+
+table	{border-collapse: collapse;	border-spacing: 0;}
+fieldset, img {border: 0;}
+address, caption, cite, code, dfn, em, strong, th, var, optgroup {font-style: inherit; font-weight: inherit;}
+em		{font-style: italic;}
+ins		{text-decoration: none;}
+del		{text-decoration: line-through;}
+caption, th {text-align: left;}
+
+q:before, q:after {content: '';}
+abbr, acronym {border: 0; font-variant: normal;}
+sup		{vertical-align: super; /* to preserve line-height and selector appearance */}
+sub		{vertical-align: sub; /* to preserve line-height and selector appearance */}
+legend	{color: #000; /*because legend doesn't inherit in IE */}
+input, button, textarea, select, optgroup, option {font-family: inherit; font-size: inherit; font-style: inherit; font-weight: inherit;}
+input, button, textarea, select {*font-size: 100%; /*@purpose To enable resizing for IE */ /*@branch For IE6-Win, IE7-Win */}
+/* Reseting to the default HTML sizes */
+h1, h2, h3, h4, h5, h6, strong {font-weight: bold; text-align: left;}
+h1 {font-size: 246.1538%;}
+h2 {font-size: 184.6154%;}
+h3 {font-size: 143.9746%;}
+h4 {font-size: 123.0769%;}
+h5 {font-size: 102.1792%;}
+h6 {font-size: 82.4361%;}
+
+p	{text-align: left;}
+/* Grid (You shouldn't edit this)
+Mainframe offers 3 types of grids 
+1) Fixed, 960px width, 12 columns
+2) Fixed, 960px width, 16 columns
+3) Fluid 100% width (under construction) 
+This is a partial implementation of the grid system.
+For a complete implementation include the mainframe-grid.css file.
+----------------------------------------------------------------------------------------------------*/
+body	{text-align: center;}
+.fixed12, .fixed16, .fixed960, .fixed980  {margin-left: auto; margin-right: auto; text-align: left;}
+.fixed12, .fixed16, .fixed960 {width: 960px;}
+.fixed980 {width: 980px;}
+.fluid	{margin: 0 auto; width: auto; text-align: left;}
+
+
+/* Cleaners & Spacers (You shouldn't edit this)
+----------------------------------------------------------------------------------------------------*/
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+.clearfix:after	{clear: both; content: ' '; display: block; font-size: 0; line-height: 0; visibility: hidden; width: 0; height: 0;}
+.clearfix		{display: inline-block;}
+* html .clearfix{height: 1%;}
+.clearfix		{display: block;}
+
+.clear, .clear10, .clear20, .clear30 .clear40, .clear50, .clear60, .clear70, .clear80, .clear90, .clear100 {
+	/*clear: both; display: block; overflow: hidden; visibility: hidden;*/ /* http://sonspring.com/journal/clearing-floats */
+	clear: both; display: block;
+}
+
+/* The purpose of these is to finish a certain part of your layout and at the same time leave some breathing space without
+using any ugly tricks like <br> or inline styles. Use any of these instead of .clear */
+.clear10	{height: 10px; clear: both;}
+.clear20	{height: 20px; clear: both;}
+.clear30	{height: 30px; clear: both;}
+.clear40	{height: 40px; clear: both;}
+.clear50	{height: 50px; clear: both;}
+.clear60	{height: 60px; clear: both;}
+.clear70	{height: 70px; clear: both;}
+.clear80	{height: 80px; clear: both;}
+.clear90	{height: 90px; clear: both;}
+.clear100	{height: 100px; clear: both;}
+
+/* Typography (Feel free to edit bellow this line)
+----------------------------------------------------------------------------------------------------*/
+html		{min-height: 100%;height:100% !important;height:100%;} /* Making backgrounds work properly*/
+body		{font:13px/1.231 arial,helvetica,clean,sans-serif; *font-size:small; /* for IE6/7 */ *font:x-small; /* for IE Quirks Mode */ min-height: 100%;height:auto !important;height:100%;}
+/* Nudge down to get to 13px equivalent for these form elements */ 
+select, input, button, textarea	{font:99% inherit; border: 1px solid #aaa;}
+input, button {padding: 2px;}
+textarea	{padding: 4px;}
+table		{font-size:inherit; font:100%; /* To help tables remember to inherit */}
+pre, code, kbd, samp, tt {font-family:monospace; *font-size:108%; line-height:100%; /* Bump up IE to get to 13px equivalent for these fixed-width elements */}
+
+/* Styling other elements & some frequently used stuff (Feel free to edit bellow this line)
+----------------------------------------------------------------------------------------------------*/
+hr		{border: 0 #aaa solid; border-top-width: 1px; clear: both; height: 0;}
+fieldset	{border: 1px solid #aaa; padding: 10px;}
+legend		{padding: 0 0.5em;}
+
+.hidden		{display: none;}
+.underline	{border-bottom: 1px solid #aaa;}
+.half		{width: 50%; text-align: left;}
+
+span.error	{color: #ff0000; font-weight: bold;}
+div.error	{color: #fff; background-color: #ff0000; border: 1px solid #9F2727; font-weight: bold; padding: 5px;}
+
+span.error	{color: #ff0000; font-weight: bold;}
+div.error	{color: #fff; background-color: #ff0000; border: 1px solid #9F2727; font-weight: bold; padding: 5px;}
+
+span.notification	{color: #DBCB28; font-weight: bold;}
+div.notification	{color: #fff; background-color: #DBCB28; border: 1px solid #9F9B27; font-weight: bold; padding: 5px;}
+
+span.information, span.success	{color: #479937; font-weight: bold;}
+div.information, div.success	{color: #fff; background-color: #479937; border: 1px solid #428049; font-weight: bold; padding: 5px;}
+
+span.neutral	{color: #666666; font-weight: bold;}
+div.neutral		{color: #fff; background-color: #999999; border: 1px solid #666666; font-weight: bold; padding: 5px;}
+
+span.white		{color: #cccccc; font-weight: bold;}
+div.white		{color: #aaaaaa; background-color: #ffffff; border: 1px solid #dddddd; font-weight: bold; padding: 5px;}
+
+.none			{display: none;}
+
+.box_grey,
+.box_green,
+.box_blue,
+.box_yellow,
+.box_red		{padding: 10px;}
+.box_grey		{background-color: #F7F7F7; border: 1px solid #CCCCCC;}
+.box_green		{background-color: #E2FFE2; border: 1px solid #19DD0B;}
+.box_blue		{background-color: #ECEFF6; border: 1px solid #D4DAE8;}
+.box_yellow		{background-color: #FFF9D7; border: 1px solid #E2C822;}
+.box_red		{background-color: #FFEBE8; border: 1px solid #DD3C10;}
+
+.small		{font-size: 0.8em;}
+
+.left		{float: left;}
+.right		{float: right;}
