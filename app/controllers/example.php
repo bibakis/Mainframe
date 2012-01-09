@@ -26,24 +26,14 @@ class Example extends MY_Controller {
 
 	function index()
 	{
-		$file = 'libs/ci-minify/test/js/test1.js';
-		$file = 'libs/ci-minify/test/css/mainframe-main.css';
-		//damn ($file);
-		echo $this->minify->js->min($file);
+		$this->load->model('mymodel');
+		damn($this->mymodel->foo());
 	}
 
 	public function combine()
 	{
 		echo $this->minify->combine_directory('libs/ci-minify/test/css');
 	}
-
-	function test()
-	{
-		//phpinfo(INFO_MODULES);
-		damn (get_loaded_extensions());
-		//echo PHP_OS   ;
-	}
-
 }
 
 /* End of file example.php */

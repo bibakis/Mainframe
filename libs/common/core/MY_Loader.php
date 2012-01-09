@@ -136,6 +136,8 @@ class MY_Loader extends CI_Loader {
 			
 			$data['includes'] = '';
 			$this->css_files = array_unique($this->css_files);
+			
+			$leading_slash = false;
 			foreach ($this->css_files as $css_file)
 			{
 				$data['includes'] .= '<link rel="stylesheet" type="text/css" href="'.$css_file.'" media="screen" /> ';
@@ -303,7 +305,7 @@ class MY_Loader extends CI_Loader {
 	}
 	
 	
-}
+	}
 
 
 

@@ -1,0 +1,116 @@
+@font-face {
+	font-family: "Myriad semibold";
+	src: url("../fonts/MyriadProSemibold.otf") format("truetype");
+	
+	/*font-family: 'Myriad semibold';
+	src: url('../fonts/MyriadProSemibold.otf');
+	src: url('../fonts/MyriadProSemibold.otf?#iefix') format('embedded-opentype'), 
+	     url('../fonts/MyriadProSemibold.otf') format('woff'),
+	     url('../fonts/MyriadProSemibold.otf')  format('truetype'); */
+	     
+}
+
+
+.content>h1
+{
+	color:graytext;
+	font-family: 'Open Sans', sans-serif;	
+	font-weight: 400;
+	font-size: 34px;
+}
+
+
+div>p>span{
+	text-decoration: underline;
+}
+
+p{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+}
+
+#header_menu,#footer
+{
+	width:840px;
+	height:150px;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom:  -30px;
+}
+
+#header_menu>h1
+{
+	font-size:50px;
+	text-align: center;
+	font-family: 'Cuprum', sans-serif;
+
+}
+
+
+.transparent_button{
+	padding: 10px;
+	text-decoration: none;
+	background-color: transparent;
+	
+}
+
+#menu_buttons
+{
+	width:inherit;
+	text-align: center;
+}
+
+#menu_buttons a
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bolder;
+	color: #474848;
+}
+
+#menu_buttons a:HOVER{
+	color:blue;
+}
+
+#menu_buttons a.active
+{
+	color: teal;
+}
+
+#about_img_container
+{
+	
+	width:840px;
+	height:420px;
+	background-image: url("../images/platforms.png");
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px
+}
+
+#about_img_container>p{
+	font-family: "Myriad semibold";
+	
+}
+
+#about_img_container p
+{
+	font-weight: bolder;
+	font-size: large;
+	margin-left: 20px;
+	margin-top: 40px;
+}
+
+ul.dash_list
+{
+	list-style-image: url("../images/dash.png");
+}
+
+ul.dash_list li
+{
+	margin-left: -2px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+}
+
+
