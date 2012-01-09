@@ -1,0 +1,1 @@
+<div><h1>This view is called from the folder/dummy controlled of the dummy module</h1></div>

@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://mainframe.d';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------

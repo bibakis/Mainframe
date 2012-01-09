@@ -4,7 +4,7 @@
 
 	if ((anchor_part.length > 1) && (anchor_part[1] != "<?php echo $this->input->cookie('anchor');?>")) {
 		document.cookie='anchor='+anchor_part[1];
-	    window.location.reload()
+	    window.location.reload();
 	}
 
 	// Just for convenience

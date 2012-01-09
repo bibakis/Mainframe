@@ -209,9 +209,11 @@ require_once 'mainframe.php';
  * --------------------------------------------------------------------
  *
  * And away we go...
- *
+ * The following line is commented, because all the code inside the core/CodeIgniter.php
+ * has been transfered inside the mainframe.php file in order to be customized as needed.
  */
-require_once BASEPATH.'core/CodeIgniter.php';
+
+//require_once BASEPATH.'core/CodeIgniter.php';
 
 /* End of file index.php */
 /* Location: ./index.php */

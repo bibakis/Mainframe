@@ -4,6 +4,8 @@
 	<meta name="description" content="Mainframe - The complete PHP framework" />
 	<meta name="keywords" content="" />
 	<meta name="language" content="en" />
+	<link href='http://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,greek' rel='stylesheet' type='text/css'>
 	<title>Mainframe - The complete PHP framework</title>
 	<?php $this->load->view('mainframe.js.php');?>
 	<?php $this->load->css('/libs/css/mainframe.css/mainframe-grid.css');?>
