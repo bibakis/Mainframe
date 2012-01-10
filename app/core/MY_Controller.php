@@ -13,9 +13,9 @@ class MY_Controller extends CI_Controller{
 		
 		if(count($segments)>0)
 		{
-			if(is_dir(APPPATH.'/modules/'.$segments[1]))
+			if(is_dir(APPPATH.'/plugins/'.$segments[1]))
 			{
-				$this->load->add_package_path(APPPATH.'modules/'.$segments[1], TRUE);
+				$this->load->add_package_path(APPPATH.'plugins/'.$segments[1], TRUE);
 				die(self);
 			}
 		}

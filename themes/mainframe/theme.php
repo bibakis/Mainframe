@@ -4,13 +4,10 @@
 	<meta name="description" content="Mainframe - The complete PHP framework" />
 	<meta name="keywords" content="" />
 	<meta name="language" content="en" />
-	<link href='http://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,greek' rel='stylesheet' type='text/css'>
 	<title>Mainframe - The complete PHP framework</title>
 	<?php $this->load->view('mainframe.js.php');?>
 	<?php $this->load->css('/libs/css/mainframe.css/mainframe-grid.css');?>
 	<?php $this->load->css('/libs/css/mainframe.css/mainframe-main.css');?>
-	<?php $this->load->css('/themes/mainframe/css/styles.css');?>
 	<?php $this->load->js('/libs/js/jquery-1.7.min.js');?>
 	<?php echo $this->load->assets();?>
 </head>
