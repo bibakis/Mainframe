@@ -20,7 +20,7 @@ class MY_Router extends CI_Router {
 	{
 		if($this->module)
 		{
-			return APPPATH.'modules/'.$this->module.'/';
+			return APPPATH.'plugins/'.$this->module.'/';
 		}
 		else
 		{
@@ -42,7 +42,7 @@ class MY_Router extends CI_Router {
 	{	
 			
 		//Does a module with the name of $segments[0] exist?
-		if(is_dir(APPPATH.'modules/'.$segments[0]))
+		if(is_dir(APPPATH.'plugins/'.$segments[0]))
 		{
 			$this->module = $segments[0];
 			$segments = array_slice($segments,1);

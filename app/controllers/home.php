@@ -19,8 +19,6 @@ class Home extends MY_Controller {
 	 */
 	public function index()
 	{
-		//echo ($this->uri->anchor());
-		
 		$this->load->theme('demo');
 		$this->load->view('home');
 		
