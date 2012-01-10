@@ -1,11 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class MY_Router extends CI_Router {
-	
-	var $module;		//This variable contains the name of the module the request should be routed to. If empty, load the controller as usual
-	
+		
 	function __construct(){
 		parent::__construct();
+		
 	}
 	
 	/**
@@ -18,15 +17,32 @@ class MY_Router extends CI_Router {
 	 */
 	function _get_base_path()
 	{
-		if($this->module)
+		$segments = $this->uri->segment_array();
+		
+		//It is possible for the $this->uri->segment_array() array not to be reindexed when 
+		//this function is called, so this check is necessary
+		if(array_key_exists(0, $segments))
 		{
-			return APPPATH.'plugins/'.$this->module.'/';
+			$this->uri->_reindex_segments();
 		}
-		else
+		
+		$segment = $this->uri->segment(1);
+		
+		if(is_dir(APPPATH.'plugins/'.$segment) && $segment)
 		{
-			return APPPATH;
+			
+			$result =  APPPATH.'plugins/'.$segment.'/';			
+			
 		}
+		else 
+		{
+			$result = APPPATH;
+		}
+		
+		return $result;
+		
 	}
+		
 	
    /**
 	* Validates the supplied segments.  Attempts to determine the path to
@@ -40,15 +56,13 @@ class MY_Router extends CI_Router {
 	*/
 	function _validate_request($segments)
 	{	
-			
+		
 		//Does a module with the name of $segments[0] exist?
 		if(is_dir(APPPATH.'plugins/'.$segments[0]))
 		{
-			$this->module = $segments[0];
 			$segments = array_slice($segments,1);
 		}
-		
-		
+				
 		
 		if (count($segments) == 0)
 		{
@@ -61,8 +75,7 @@ class MY_Router extends CI_Router {
 			return $segments;
 		}
 		
-		
-	
+				
 		// Is the controller in a sub-folder?
 		if (is_dir($this->_get_base_path().'controllers/'.$segments[0]))
 		{
@@ -118,5 +131,21 @@ class MY_Router extends CI_Router {
 				
 			return $segments;
 		}
+		
+		// If we've gotten this far it means that the URI does not correlate to a valid
+		// controller class.  We will now see if there is an override
+		if ( ! empty($this->routes['404_override']))
+		{
+			$x = explode('/', $this->routes['404_override']);
+		
+			$this->set_class($x[0]);
+			$this->set_method(isset($x[1]) ? $x[1] : 'index');
+		
+			return $x;
+		}
+		
+		
+		// Nothing else to do at this point but show a 404
+		show_404($segments[0]);
 	}
 }
