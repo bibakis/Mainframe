@@ -163,13 +163,8 @@ class MY_Loader extends CI_Loader {
 
 			$this->loading_theme = true;
 			
-			if($this->is_modular()){
-				$themepath = '../themes/'.$this->template.'/theme.php';
-			}
-			else 
-			{
-				$themepath = '../../themes/'.$this->template.'/theme.php';
-			}
+			$themepath = '../../themes/'.$this->template.'/theme.php';
+			
 			return $this->_ci_load(array(
 				'_ci_view' => $themepath, 
 				'_ci_vars' => $data, 

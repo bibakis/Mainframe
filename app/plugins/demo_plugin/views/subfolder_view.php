@@ -30,9 +30,9 @@
 			<br>
 						
 			<p>
-				This controller file is located in the path <code>app/plugins/demo_plugin/controllers/folder/test.php</code>
-				It is accessed by the <?php echo base_url().$this->uri->uri_string();?> URI and it calls the view
-				located inside of the <code>app/plugins/demo_plugin/views/demo/plugin_home.php</code>
+				Controller location: <code>app/plugins/demo_plugin/controllers/folder/test.php</code>
+				It is accessed by the following URI: <code><?php echo base_url().$this->uri->uri_string();?></code>
+				View location: <code>app/plugins/demo_plugin/views/subfolder_view.php</code>
 			</p>
 			
 			<p>
