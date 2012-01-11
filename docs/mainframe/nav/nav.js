@@ -1,3 +1,8 @@
+$(function() {
+	myHeight = $('#nav');
+	myHeight.hide();
+});
+
 function create_menu(basepath)
 {
 	var base = (basepath == 'null') ? '' : basepath;

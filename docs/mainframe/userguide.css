@@ -127,6 +127,12 @@ a:hover {
 	outline-style: none;
 }
 
+#wrapper	{
+	margin: 0 auto;
+	padding: 0 0px;
+	max-width: 1200px;
+}
+
 #masthead {
 	margin: 0 40px 0 35px;
 	padding: 0 0 0 6px;

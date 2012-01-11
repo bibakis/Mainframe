@@ -1,9 +1,7 @@
 <?php $this->load->css('/app/plugins/demo_plugin/assets/styles.css');?>
 <h1>This is a plugin view</h1>
 <p>
-	This view belongs to the 'demo' theme of this Mainframe installation 
-	and is here to demonstrate how each plugin can be theme indepedent, as long as it's views are 
-	organised by theme
+	This view uses the 'demo' theme.
 </p>
 
 <p>

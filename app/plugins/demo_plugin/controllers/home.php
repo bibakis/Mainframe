@@ -2,6 +2,11 @@
 
 class Home extends CI_Controller
 {
+	
+	/*
+	 * This is just here so you can easily see and test the plugin functionality.
+	 * Should be accessible through http://domain.tld/demo_plugin/
+	 */
 	function index()
 	{
 		$this->load->theme('demo');
