@@ -1,10 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class MY_Router extends CI_Router {
-		
+	private $plugin = ''; 
+	
 	function __construct(){
 		parent::__construct();
 		
+	}
+	
+	function fetch_plugin()
+	{
+		return $this->plugin;
+	}
+	
+	function set_plugin($val)
+	{
+		$this->plugin = $val;
 	}
 	
 	/**
@@ -38,7 +49,7 @@ class MY_Router extends CI_Router {
 		{
 			$result = APPPATH;
 		}
-		
+				
 		return $result;
 		
 	}
@@ -56,13 +67,13 @@ class MY_Router extends CI_Router {
 	*/
 	function _validate_request($segments)
 	{	
-		
 		//Does a module with the name of $segments[0] exist?
 		if(is_dir(APPPATH.'plugins/'.$segments[0]))
 		{
-			$segments = array_slice($segments,1);
-		}
+			$this->set_plugin($segments[0]);
+			$segments = array_slice($segments,1);	
 				
+		}
 		
 		if (count($segments) == 0)
 		{
@@ -74,9 +85,9 @@ class MY_Router extends CI_Router {
 		{
 			return $segments;
 		}
-		
 				
 		// Is the controller in a sub-folder?
+		$a = $segments[0];
 		if (is_dir($this->_get_base_path().'controllers/'.$segments[0]))
 		{
 			// Set the directory and remove it from the segment array
@@ -100,7 +111,7 @@ class MY_Router extends CI_Router {
 					}
 					else
 					{
-						show_404($this->fetch_directory().$segments[0]);
+						show_404($this->fetch_plugin().$this->fetch_directory().$segments[0]);
 					}
 				}
 			}
@@ -124,6 +135,8 @@ class MY_Router extends CI_Router {
 				if ( ! file_exists($this->_get_base_path().'controllers/'.$this->fetch_directory().$this->default_controller.'.php'))
 				{
 					$this->directory = '';
+					//If no, there is nothing to show but a 404
+					show_404();
 					return array();
 				}
 	

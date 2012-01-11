@@ -15,6 +15,7 @@
 <body>
 <div class="fixed12">
 	<div class="grid_12">
+		<h6>This theme belongs to the plugin!</h6>
 		<?php echo $content; ?>
 	</div>
 </div>

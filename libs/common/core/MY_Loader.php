@@ -63,6 +63,7 @@ class MY_Loader extends CI_Loader {
 		
 	}
 	
+		
 	/**
 	 * Allows the loading of templates. Normaly you want pages with the same layout across your site.
 	 * If you decide to load a template, then any of the views you load afterwards will be placed inside
@@ -161,8 +162,14 @@ class MY_Loader extends CI_Loader {
 			}
 
 			$this->loading_theme = true;
-			$themepath = '../../themes/'.$this->template.'/theme.php';
-		
+			
+			if($this->is_modular()){
+				$themepath = '../themes/'.$this->template.'/theme.php';
+			}
+			else 
+			{
+				$themepath = '../../themes/'.$this->template.'/theme.php';
+			}
 			return $this->_ci_load(array(
 				'_ci_view' => $themepath, 
 				'_ci_vars' => $data, 
