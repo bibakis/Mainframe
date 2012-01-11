@@ -39,7 +39,17 @@ code {
 #body{
 	margin: 0 15px 0 15px;
 }
-	
+
+table.styled thead td {
+	background-color: #eee;
+	font-weight: bold;
+}
+
+table.styled td {
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+
 p.footer{
 	text-align: right;
 	font-size: 11px;
