@@ -46,12 +46,24 @@ class MY_Loader extends CI_Loader {
 	var $css_files = array();
 	var $js_files = array();
 	
+	private $module = FALSE;
+	
 	function __construct(){
 		parent::__construct();
 		// Fix the paths. The next line is the only change here. The rest is the exact CI function.
 		$this->_ci_library_paths = array(BASEPATH, APPPATH, COMMONPATH);
+		
+		
+		$module = $this->is_modular();
+		if($module)
+		{		
+			$this->add_package_path(APPPATH.'plugins/'.$module, TRUE);
+		}
+			
+		
 	}
 	
+		
 	/**
 	 * Allows the loading of templates. Normaly you want pages with the same layout across your site.
 	 * If you decide to load a template, then any of the views you load afterwards will be placed inside
@@ -150,8 +162,9 @@ class MY_Loader extends CI_Loader {
 			}
 
 			$this->loading_theme = true;
+			
 			$themepath = '../../themes/'.$this->template.'/theme.php';
-		
+			
 			return $this->_ci_load(array(
 				'_ci_view' => $themepath, 
 				'_ci_vars' => $data, 
@@ -304,6 +317,39 @@ class MY_Loader extends CI_Loader {
 		}
 	}
 	
+	
+	/**
+	* This function checks if the current URI refers to a Mini_App, instead of a regular Controller.
+	* If so, it returns the name of the module else returns false
+	*/
+	
+	function is_modular($strict = FALSE){
+		$CI =& get_instance();
+		$segment = $CI->uri->segment(1);
+				
+		$result = FALSE;
+		
+		if($segment)
+		{
+			if(is_dir(APPPATH.'plugins/'.$segment))
+			{
+				if($strict)
+				{
+					return TRUE;
+				}
+				
+				$result =  $segment;
+			}
+			else
+			{
+				$result = FALSE;
+			}
+		}
+		
+		
+				
+		return $result;
+	}
 	
 	}
 
