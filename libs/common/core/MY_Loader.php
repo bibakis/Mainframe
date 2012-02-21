@@ -174,6 +174,10 @@ class MY_Loader extends CI_Loader {
 	}
 
 	
+	/*
+	 * Loads a JavaScript file
+	 * @param	string		$filename		The JavaScript file to load	
+	 */
 	function js($filename)
 	{
 		if ((substr($filename, 0,7) != 'http://') && (substr($filename, 0,8) != 'https://'))
@@ -195,6 +199,10 @@ class MY_Loader extends CI_Loader {
 	}
 	
 	
+	/*
+	 * Loads a CSS file
+	 * @param	string		$filename		The CSS file to load	
+	 */
 	function css($filename)
 	{		
 		if ((substr($filename, 0,7) != 'http://') && (substr($filename, 0,8) != 'https://'))
@@ -213,6 +221,46 @@ class MY_Loader extends CI_Loader {
 			$this->css_files[] = $filename;
 		}
 		*/
+	}
+	
+	
+	/*
+	 * Loads and compiles a LESS file -> http://lesscss.org/
+	 * @param	string		$filename		The CSS file to load	
+	 */
+	function less($filename){
+		// Block remote LESS files
+		if ((substr($filename, 0,7) === 'http://') OR (substr($filename, 0,8) === 'https://'))
+		{
+			return false;
+		}
+		
+		//Check if it's a LESS file
+		if (substr($filename, -5) !== '.less')
+		{
+			return false;
+		}
+		
+		require_once '/libs/php/lessc.inc.php';
+		
+			$less = $_SERVER['DOCUMENT_ROOT'] . $filename;
+			$css = substr($less, 0, -4) . 'css';
+			
+			try {
+			    lessc::ccompile($less, $css);
+			} catch (exception $ex) {
+			    exit('lessc fatal error:<br />'.$ex->getMessage());
+			}
+
+			$this->css_files[] = $css;
+			
+			/* Original lesscss.org code, left here for any possible future debugging
+			try {
+			    lessc::ccompile($less, $css);
+			} catch (exception $ex) {
+			    exit('lessc fatal error:<br />'.$ex->getMessage());
+			}
+			*/
 	}
 	
 	/*

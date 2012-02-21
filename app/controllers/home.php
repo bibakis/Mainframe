@@ -24,6 +24,7 @@ class Home extends CI_Controller {
 		
 	}
 	
+	// TODO: This is unused at the moment, use it somehow
 	public function about()
 	{
 		$this->load->theme('mainframe');
