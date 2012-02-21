@@ -246,11 +246,7 @@ class MY_Loader extends CI_Loader {
 			$less = $_SERVER['DOCUMENT_ROOT'] . $filename;
 			$css = substr($less, 0, -4) . 'css';
 			
-			try {
-			    lessc::ccompile($less, $css);
-			} catch (exception $ex) {
-			    exit('lessc fatal error:<br />'.$ex->getMessage());
-			}
+			lessc::ccompile($less, $css);
 
 			$this->css_files[] = $css;
 			
@@ -262,6 +258,7 @@ class MY_Loader extends CI_Loader {
 			}
 			*/
 	}
+
 	
 	/*
 	 * Returns a list of tags which load all CSS & Javascript files declared with $this->load->css() and $this->load->js()
