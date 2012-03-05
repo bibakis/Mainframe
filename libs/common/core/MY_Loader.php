@@ -247,8 +247,9 @@ class MY_Loader extends CI_Loader {
 			$css = substr($less, 0, -4) . 'css';
 			
 			lessc::ccompile($less, $css);
-
-			$this->css_files[] = $css;
+			
+			$final_css = substr($filename, 0, -4) . 'css';
+			$this->css_files[] = $final_css;
 			
 			/* Original lesscss.org code, left here for any possible future debugging
 			try {
