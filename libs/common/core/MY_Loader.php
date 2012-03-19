@@ -240,8 +240,9 @@ class MY_Loader extends CI_Loader {
 		{
 			return false;
 		}
+		$path = $_SERVER['DOCUMENT_ROOT'] . '/libs/php/lessc.inc.php';
 		
-		require_once '/libs/php/lessc.inc.php';
+		require_once ($path);
 		
 			$less = $_SERVER['DOCUMENT_ROOT'] . $filename;
 			$css = substr($less, 0, -4) . 'css';
