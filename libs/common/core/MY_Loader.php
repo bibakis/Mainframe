@@ -83,30 +83,6 @@ class MY_Loader extends CI_Loader {
 		$this->template = $template;
 		$this->data = $this->_ci_object_to_array($data);
 		$this->return = $return;
-
-		if (count($this->css_files) > 0){
-			$includes = '';
-			foreach ($files as $file_array)
-			{
-				foreach ($file_array as $type => $file)
-				{
-					if ( ! ((substr($file,0,7) == 'http://') OR (substr($file,0,7) == 'https:/')))
-					{
-						$file = base_url().$file;
-					}
-					
-					if ($type == 'css')
-					{
-						$includes .= '<link rel="stylesheet" type="text/css" href="'.$file.'" media="screen" />';
-					}
-					elseif ($type == 'js')
-					{
-						$includes .= '<script type="text/javascript" src="'.$file.'"></script>';
-					}
-				}
-			}
-			$this->data['includes'] = $includes;
-		}
 	}
 	
 
@@ -147,9 +123,11 @@ class MY_Loader extends CI_Loader {
 			
 			
 			$data['includes'] = '';
+			
 			$this->css_files = array_unique($this->css_files);
 			
 			$leading_slash = false;
+			
 			foreach ($this->css_files as $css_file)
 			{
 				$data['includes'] .= '<link rel="stylesheet" type="text/css" href="'.$css_file.'" media="screen" /> ';
@@ -177,58 +155,61 @@ class MY_Loader extends CI_Loader {
 	/*
 	 * Loads a JavaScript file
 	 * @param	string		$filename		The JavaScript file to load	
+	 * @param	string		$order			can be 'first','last',FALSE. use first for loading first, last for loading last, 
+	 *			or ignore the parameter if you don't want to tweak the order of loading for this file
 	 */
-	function js($filename)
+	function js($filename, $order = FALSE)
 	{
-		if ((substr($filename, 0,7) != 'http://') && (substr($filename, 0,8) != 'https://'))
+		if (!$order)
 		{
-			//$filename = base_url().$filename.'?v='.$this->config->item('cjsuf');
+			$this->js_files['normal'][] = $filename;
 		}
-		
-		$this->js_files[] = $filename;
-		
-		// If the theme is rendered just echo the included CSS file tag
-		/*
-		if ($this->loading_theme){
-			echo '<script type="text/javascript" src="'.$filename.'"></script>';
+		elseif (($order === 'first') OR ($order === 'last'))
+		{
+			$this->js_files[$order][] = $filename;
 		}
-		else {
-			$this->js_files[] = $filename;
+		else
+		{
+			log_message('debug', 'Invalid loading order set for file ' . $filename);
 		}
-		*/
 	}
 	
 	
 	/*
 	 * Loads a CSS file
-	 * @param	string		$filename		The CSS file to load	
+	 * @param	string		$filename		The CSS file to load
+	 * @param	string		$order			can be 'first','last',FALSE. use first for loading first, last for loading last, 
+	 *			or ignore the parameter if you don't want to tweak the order of loading for this file
 	 */
-	function css($filename)
+	function css($filename, $order = FALSE)
 	{		
-		if ((substr($filename, 0,7) != 'http://') && (substr($filename, 0,8) != 'https://'))
+		if (!$order)
 		{
-			//$filename = base_url().$filename.'?v='.$this->config->item('cjsuf');
+			$this->css_files['normal'][] = $filename;
 		}
-		
-		$this->css_files[] = $filename;
-		
-		// If the theme is rendered just echo the included CSS file tag
-		/*
-		if ($this->loading_theme){
-			echo '<link rel="stylesheet" type="text/css" href="'.$filename.'" media="screen" /> ';
+		elseif (($order === 'first') OR ($order === 'last'))
+		{
+			$this->css_files[$order][] = $filename;
 		}
-		else {
-			$this->css_files[] = $filename;
+		else 
+		{
+			log_message('debug', 'Invalid loading order set for file ' . $filename);
 		}
-		*/
+
 	}
 	
 	
 	/*
 	 * Loads and compiles a LESS file -> http://lesscss.org/
-	 * @param	string		$filename		The CSS file to load	
+	 * Compiled less files are stored in /themes/cache/$path/$name.css
+	 * This is done to avoid filename colissions and keep things tidy
+	 * 		For example if the original Less file was /themes/demo/less/styles.css
+	 * 		the new css file will be /themes/cache/themes/demo/less/styles.css
+	 * @param	string		$filename		The CSS file to load
+	 * @param	string		$order			can be 'first','last',FALSE. use first for loading first, last for loading last, 
+	 * 			or ignore the parameter if you don't want to tweak the order of loading for this file
 	 */
-	function less($filename){
+	function less($filename, $order = FALSE){
 		// Block remote LESS files
 		if ((substr($filename, 0,7) === 'http://') OR (substr($filename, 0,8) === 'https://'))
 		{
@@ -240,17 +221,44 @@ class MY_Loader extends CI_Loader {
 		{
 			return false;
 		}
-		$path = $_SERVER['DOCUMENT_ROOT'] . '/libs/php/lessc.inc.php';
 		
-		require_once ($path);
+		// Make sure $filename path starts with a /
+		if (substr($filename, 0, 1) !== '/')
+		{
+			$filename = '/'.$filename;
+		}
 		
+		$lib = $_SERVER['DOCUMENT_ROOT'] . '/libs/php/lessc.inc.php';
+		require_once ($lib);
+		
+			$css_filename = substr('/themes/cache' . $filename, 0, -4) . 'css';
 			$less = $_SERVER['DOCUMENT_ROOT'] . $filename;
-			$css = substr($less, 0, -4) . 'css';
+			$css = $_SERVER['DOCUMENT_ROOT'] . $css_filename;
 			
-			lessc::ccompile($less, $css);
+			// Create the folder structure before attempting to call the less compressor for storing the file
+			$css_parts = explode('/', $css);
+			array_pop($css_parts);
+			$css_path = implode('/', $css_parts);
+			@mkdir($css_path, 0, true);
 			
-			$final_css = substr($filename, 0, -4) . 'css';
-			$this->css_files[] = $final_css;
+			// Compile the $less file onto $css
+			lessc::ccompile($less, $css);			
+			
+			$final_css = $css_filename;
+			
+			if (!$order)
+			{
+				$this->css_files['normal'][] = $filename;
+			}
+			elseif (($order === 'first') OR ($order === 'last'))
+			{
+				$this->css_files[$order][] = $filename;
+			}
+			else
+			{
+				log_message('debug', 'Invalid loading order set for file ' . $filename);
+			}
+
 			
 			/* Original lesscss.org code, left here for any possible future debugging
 			try {
@@ -267,19 +275,68 @@ class MY_Loader extends CI_Loader {
 	 * Place $this->load->assets() in your theme where you want the tags to appear (normaly in the <head> section)
 	 */
 	function assets(){
+		// reorder assets based on given order by the user
+		$ordered_css = array();
+		$ordered_js = array();
+		
+		if (array_key_exists('first', $this->css_files))
+		{
+			foreach ($this->css_files['first'] as $file)
+			{
+				$ordered_css[] = $file;
+			}	
+		}
+		if (array_key_exists('normal', $this->css_files))
+		{
+			foreach ($this->css_files['normal'] as $file)
+			{
+				$ordered_css[] = $file;
+			}
+		}
+		if (array_key_exists('last', $this->css_files))
+		{
+			foreach ($this->css_files['last'] as $file)
+			{
+				$ordered_css[] = $file;
+			}
+		}
+		
+		if (array_key_exists('first', $this->js_files))
+		{
+			foreach ($this->js_files['first'] as $file)
+			{
+				$ordered_js[] = $file;
+			}
+		}
+		if (array_key_exists('normal', $this->js_files))
+		{
+			foreach ($this->js_files['normal'] as $file)
+			{
+				$ordered_js[] = $file;
+			}
+		}
+		if (array_key_exists('last', $this->js_files))
+		{
+			foreach ($this->js_files['last'] as $file)
+			{
+				$ordered_js[] = $file;
+			}
+		}
+
+		
 		if ($this->config->item('assets_pipeline'))
 		{
 			$ci = &get_instance();
 			$ci->load->library('assets_pipeline');
-			$output = $ci->assets_pipeline->render($this->css_files, $this->js_files);
+			$output = $ci->assets_pipeline->render($ordered_css, $ordered_js);
 		}
 		else 
 		{
 			$output = '';
-			foreach ($this->css_files as $file){
+			foreach ($ordered_css as $file){
 				$output .= '<link rel="stylesheet" type="text/css" href="'.$file.'" media="screen" />';
 			}
-			foreach ($this->js_files as $file){
+			foreach ($ordered_js as $file){
 				$output .= '<script type="text/javascript" src="'.$file.'"></script>';
 			}
 		}
@@ -369,7 +426,6 @@ class MY_Loader extends CI_Loader {
 	* This function checks if the current URI refers to a Mini_App, instead of a regular Controller.
 	* If so, it returns the name of the module else returns false
 	*/
-	
 	function is_modular($strict = FALSE){
 		$CI =& get_instance();
 		$segment = $CI->uri->segment(1);
@@ -397,8 +453,10 @@ class MY_Loader extends CI_Loader {
 				
 		return $result;
 	}
+
+
 	
-	}
+}
 
 
 
