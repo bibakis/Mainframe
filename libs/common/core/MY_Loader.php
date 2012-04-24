@@ -323,16 +323,16 @@ class MY_Loader extends CI_Loader {
 			}
 		}
 
-		
+		$output = '';
 		if ($this->config->item('assets_pipeline'))
 		{
 			$ci = &get_instance();
 			$ci->load->library('assets_pipeline');
-			$output = $ci->assets_pipeline->render($ordered_css, $ordered_js);
+			$output .= $ci->assets_pipeline->render_css($ordered_css);
+			$output .= $ci->assets_pipeline->render_js($ordered_js);
 		}
 		else 
 		{
-			$output = '';
 			foreach ($ordered_css as $file){
 				$output .= '<link rel="stylesheet" type="text/css" href="'.$file.'" media="screen" />';
 			}
