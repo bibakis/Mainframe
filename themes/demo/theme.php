@@ -9,6 +9,7 @@
 	<?php $this->load->css('/libs/css/mainframe.css/mainframe-grid.css', 'first');?>
 	<?php $this->load->css('/libs/css/mainframe.css/mainframe-main.css');?>
 	<?php $this->load->css('/themes/demo/css/styles.css', 'last');?>
+	<?php $this->load->css('http://yui.yahooapis.com/3.5.0/build/cssgrids/grids-min.css', 'last');?>
 	
 	<?php $this->load->less('/themes/demo/less/styles.less');?>
 	
@@ -18,7 +19,7 @@
 	<?php $this->load->less('/libs/temp/twitter-bootstrap-v2.0.2-3-g6506ede/less/alerts.less', 'last');?>
 	<?php $this->load->less('/libs/temp/twitter-bootstrap-v2.0.2-3-g6506ede/less/close.less', 'last');?>
 	
-	<?php $this->load->js('/libs/js/jquery-1.7.min.js');?>
+	<?php $this->load->js('/libs/js/jquery-1.7.min.js','first');?>
 	<?php echo $this->load->assets();?>
 </head>
 <body>

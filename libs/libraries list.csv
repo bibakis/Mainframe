@@ -9,3 +9,5 @@ LESS;1.2.1;js;/js/less-1.2.1.min.js;http://lesscss.org/;LESS extends CSS with dy
 jQuery URL Parser;2.0;js;/js/jquery.url.js;https://github.com/allmarkedup/jQuery-URL-Parser;jQuery plugin for parsing URLs and extracting information out of them
 CodeIgniter;2.1.0;php;/codeigniter/*;http://codeigniter.com/;The CodeIgniter PHP framework
 lessphp;0.3.2;php;/php/lessc.inc.php;http://leafo.net/lessphp/;LESS css compiler for php, adapted from http://lesscss.org
+YUI CSS compressor;91c5ea5;php;/php/cssmin.php;https://github.com/tubalmartin/YUI-CSS-compressor-PHP-port;PHP port of the Javascript port of the CSS minification tool distributed with YUICompressor
+JSMin.php;1.1.1;php;/php/JSMin.php;https://github.com/rgrove/jsmin-php/;Javascript minifier by Douglas Crockford, ported to PHP by Ryan Grove

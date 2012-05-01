@@ -243,16 +243,15 @@ class MY_Loader extends CI_Loader {
 			
 			// Compile the $less file onto $css
 			lessc::ccompile($less, $css);			
-			
-			$final_css = $css_filename;
+
 			
 			if (!$order)
 			{
-				$this->css_files['normal'][] = $filename;
+				$this->css_files['normal'][] = $css_filename;
 			}
 			elseif (($order === 'first') OR ($order === 'last'))
 			{
-				$this->css_files[$order][] = $filename;
+				$this->css_files[$order][] = $css_filename;
 			}
 			else
 			{

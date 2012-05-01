@@ -101,57 +101,64 @@ class Assets_pipeline
 		{
 			require_once '/libs/php/cssmin.php';
 			$CSSmin = new CSSmin;
-		}		
+		}
 		
+		// If CSS needs to be combined
 		if ($this->ci->config->item('combine_css')){
 				
-			// Determine the file names for combined file
-			$hash = $this->ci->config->item('cjsuf');
+			// Determine the file name for combined file
+			
+			$contents = array();
 			foreach ($css_files as $file)
 			{
-				$hash .= $file;
-			}
+				// Compress only local files, ignore the rest
+				if (substr($file,0,4) !== 'http') // Local file
+				{
+					$content = file_get_contents($_SERVER['DOCUMENT_ROOT'].$file);
+					$contents[$file] = ($this->ci->config->item('compress_css'))?$CSSmin->run($content):$content;
+				}
+				else // Handle remote files here
+				{
+					$output .= '<link rel="stylesheet" type="text/css" href="'. $file .'" media="screen" />';
+				}
 				
-			$hash = sha1($hash);
-			$final_css_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.sha1($hash).'.css';
+			}
+			$css_code = implode('', $contents);
+			$hash = sha1($css_code);
+			$final_css_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.$hash.'.css';		
 				
 			if (!file_exists($final_css_file))
-			{
-				$css_code = '';
-				foreach ($css_files as $file)
-				{
-					if ($this->ci->config->item('compress_css'))
-					{
-						$css_code .= $CSSmin->run(file_get_contents($_SERVER['DOCUMENT_ROOT'] . $file));
-					}
-					else
-					{
-						$css_code .= file_get_contents($_SERVER['DOCUMENT_ROOT'] . $file);
-					}
-						
-				}
-		
-		
+			{		
 				file_put_contents($final_css_file, $css_code);
 			}
 				
-			$output .= '<link rel="stylesheet" type="text/css" href="'. base_url() . 'themes/cache/'.sha1($hash).'.css" media="screen" />';
+			$output .= '<link rel="stylesheet" type="text/css" href="'. base_url() . 'themes/cache/' . $hash . '.css" media="screen" />';
 		
 		}
+		// If CSS files should be handled separately
 		else {
 			foreach ($css_files as $file)
 			{
-				$hash = sha1($this->ci->config->item('cjsuf') . $file);
-				$final_css_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.$hash.'.css';
-		
-				if ($this->ci->config->item('compress_css') && !file_exists($final_css_file))
+				// Compress only local files, ignore the rest
+				if (substr($file,0,4) !== 'http') // Local file
 				{
-					file_put_contents($final_css_file, $CSSmin->run(file_get_contents($_SERVER['DOCUMENT_ROOT'].$file)));
-					$output .= '<link rel="stylesheet" type="text/css" href="'. base_url() . 'themes/cache/'.$hash.'.css" media="screen" />';
+					$hash = sha1_file($_SERVER['DOCUMENT_ROOT'].$file);
+					
+					$final_css_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.$hash.'.css';
+					
+					if ($this->ci->config->item('compress_css') && !file_exists($final_css_file))
+					{
+						file_put_contents($final_css_file, $CSSmin->run(file_get_contents($_SERVER['DOCUMENT_ROOT'].$file)));
+						$output .= '<link rel="stylesheet" type="text/css" href="'. base_url() . 'themes/cache/'.$hash.'.css" media="screen" />';
+					}
+					else
+					{
+						$output .= '<link rel="stylesheet" type="text/css" href="'. substr(base_url(),0,-1) . $file .'" media="screen" />';
+					}
 				}
-				else
+				else // Remote file
 				{
-					$output .= '<link rel="stylesheet" type="text/css" href="'. substr(base_url(),0,-1) . $file .'" media="screen" />';
+					$output .= '<link rel="stylesheet" type="text/css" href="'. $file .'" media="screen" />';
 				}
 			}
 		
