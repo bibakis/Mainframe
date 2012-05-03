@@ -19,7 +19,10 @@
 	<?php $this->load->less('/libs/temp/twitter-bootstrap-v2.0.2-3-g6506ede/less/alerts.less', 'last');?>
 	<?php $this->load->less('/libs/temp/twitter-bootstrap-v2.0.2-3-g6506ede/less/close.less', 'last');?>
 	
-	<?php $this->load->js('/libs/js/jquery-1.7.min.js','first');?>
+	<?php $this->load->js('/libs/js/jquery-1.7.min.js');?>
+	<?php $this->load->js('/themes/demo/js/calendar.js','last');?>
+	<?php $this->load->js('/themes/demo/js/graphical.js','first');?>
+	
 	<?php echo $this->load->assets();?>
 </head>
 <body>

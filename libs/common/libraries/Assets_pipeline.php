@@ -90,7 +90,7 @@ class Assets_pipeline
 	
 	/*
 	 * Returns the tags needed for included CSS loaded by $this->load->css() from various parts of the application
-	 * If needed also merges all file into one, or even minifies the code
+	 * If needed also merges all files into one, and even minifies the code
 	*/
 	function render_css($css_files = array())
 	{
@@ -146,9 +146,12 @@ class Assets_pipeline
 					
 					$final_css_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.$hash.'.css';
 					
-					if ($this->ci->config->item('compress_css') && !file_exists($final_css_file))
+					if ($this->ci->config->item('compress_css'))
 					{
-						file_put_contents($final_css_file, $CSSmin->run(file_get_contents($_SERVER['DOCUMENT_ROOT'].$file)));
+						if (!file_exists($final_css_file))
+						{
+							file_put_contents($final_css_file, $CSSmin->run(file_get_contents($_SERVER['DOCUMENT_ROOT'].$file)));
+						}
 						$output .= '<link rel="stylesheet" type="text/css" href="'. base_url() . 'themes/cache/'.$hash.'.css" media="screen" />';
 					}
 					else
@@ -171,213 +174,87 @@ class Assets_pipeline
 	
 	/*
 	 * Returns the tags needed for included JS loaded by $this->load->js() from various parts of the application
+	 * If needed also merges all files into one, and even minifies the code
 	*/
 	function render_js($js_files = array())
 	{
+		$output = '';
+		
+		// Load the necessary compression libraries if needed
 		if ($this->ci->config->item('compress_js'))
 		{
 			require_once '/libs/php/JSMin.php';
 		}
-		
-		
-	}
 	
-	
-	
-	// OLD
-	function render_combined($css_files = array(), $js_files = array()){
-		$this->ci->load->helper('file_helper');
-		$local_list = array('css' => array(), 'js' => array());
-		$remote_list = array('css' => array(), 'js' => array());
 		
-		$css_count = 0;
-		$js_count = 0;
+		// If JS needs to be combined
+		if ($this->ci->config->item('combine_js')){
 		
-		foreach ($css_files as $file){
-			// Is it a local file ?
-			if ((substr($file, 0,7) != 'http://') && (substr($file, 0,8) != 'https://'))
-			{
-				if ($contents = file_get_contents($file))
-				{
+			// Determine the file name for combined file
 				
-				}
-			}
-			// If it's a remote file add it to the remote queue
-			else 
+			$contents = array();
+			foreach ($js_files as $file)
 			{
-				$remote_list['css'][] = $file;
-			}
-			
-			$css_count++;
-		}
-		
-		
-		foreach ($js_files as $file){
-			// Is it a local file ?
-			if ((substr($file, 0,7) != 'http://') && (substr($file, 0,8) != 'https://'))
-			{
-				if ($contents = file_get_contents($file))
+				// Compress only local files, ignore the rest
+				if (substr($file,0,4) !== 'http') // Local file
 				{
-
+					$content = file_get_contents($_SERVER['DOCUMENT_ROOT'].$file);
+					$contents[$file] = ($this->ci->config->item('compress_js'))?JSMin::minify($content):$content;
 				}
-			}
-			// If it's a remote file add it to the remote queue
-			else 
-			{
-				$remote_list['js'][] = $file;
-			}
-			
-			$js_count++;
-		}
-	
-		$output = '';
-		// Process the queue
-		// Remote files are processed first as they are commonly CDN hosted essential files like jQuery
-		foreach ($remote_list['css'] as $remote_file){
-			$output .= '<link rel="stylesheet" type="text/css" href="'.$remote_file.'" media="screen" />';
-		}
-		
-		foreach ($remote_list['js'] as $remote_file){
-			$output .= '<script type="text/javascript" src="'.$remote_file.'"></script>';
-		}
-
-		foreach ($local_list['css'] as $type => $local_file){
-			$output .= '<link rel="stylesheet" type="text/css" href="'.base_url().$local_file.'" media="screen" />';
-		}
-			
-		foreach ($local_list['js'] as $type => $local_file){
-			$output .= '<script type="text/javascript" src="'.base_url().$local_file.'"></script>';
-		}
-			
-		log_message('debug', $css_count." CSS files loaded by the loader class.");
-		log_message('debug', $js_count." Javascript files loaded by the loader class.");
-			
-		return $output;
-
-	}
-	
-	// OLD
-	function render_seperate($css_files = array(), $js_files = array()){
-		$this->ci->load->helper('file_helper');
-		$local_list = array('css' => array(), 'js' => array());
-		$remote_list = array('css' => array(), 'js' => array());
-	
-		$css_count = 0;
-		$js_count = 0;
-	
-		foreach ($css_files as $file){
-			// Is it a local file ?
-			if ((substr($file, 0,7) != 'http://') && (substr($file, 0,8) != 'https://'))
-			{
-				if ($contents = file_get_contents($file))
+				else // Handle remote files here
 				{
-					$hash = sha1($file.$this->ci->config->item('cjsuf'));
+					$output .= '<script type="text/javascript" src="'. $file .'"></script>';
+				}
+		
+			}
+			$js_code = implode('', $contents);
+			$hash = sha1($js_code);
+			$final_js_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.$hash.'.js';
+		
+			if (!file_exists($final_js_file))
+			{
+				file_put_contents($final_js_file, $js_code);
+			}
+		
+			$output .= '<script type="text/javascript" src="'. base_url() . 'themes/cache/' . $hash . '.js"></script>';
+		
+		}
+		// If JS files should be handled separately
+		else {
+			foreach ($js_files as $file)
+			{				
+				// Compress only local files, ignore the rest
+				if (substr($file,0,4) !== 'http') // Local file
+				{
+					$hash = sha1_file($_SERVER['DOCUMENT_ROOT'].$file);
 						
-					// Is the target file already in place ?
-					$target_path = 'themes/cache/'.$hash.'.css';
-					if (file_exists($target_path))
+					$final_js_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.$hash.'.js';
+						
+					if ($this->ci->config->item('compress_js'))
 					{
-						$local_list['css'][] = $target_path;
+						if (!file_exists($final_js_file))
+						{
+							file_put_contents($final_js_file, JSMin::minify(file_get_contents($_SERVER['DOCUMENT_ROOT'].$file)));
+						}
+						$output .= '<script type="text/javascript" src="'. base_url() . 'themes/cache/'.$hash.'.js"></script>';
 					}
-					// If not, create it
 					else
 					{
-						if (write_file($target_path, $contents))
-						{
-							$local_list['css'][] = $target_path;
-						}
-						// Target file could not be created, show the original file and log the error
-						else
-						{
-							$local_list['css'][] = $file;
-							log_message('error', "CSS file failed to write to cache, original file loaded: ".$css_file);
-						}
-	
+						$output .= '<script type="text/javascript" src="'. substr(base_url(),0,-1) . $file .'"></script>';
 					}
 				}
-				else
+				else // Remote file
 				{
-					log_message('error', "CSS file failed to load: ".$css_file);
+					$output .= '<script type="text/javascript" src="'. $file .'"></script>';
 				}
 			}
-			// If it's a remote file add it to the remote queue
-			else
-			{
-				$remote_list['css'][] = $file;
-			}
-				
-			$css_count++;
+		
 		}
-	
-	
-		foreach ($js_files as $file){
-			// Is it a local file ?
-			if ((substr($file, 0,7) != 'http://') && (substr($file, 0,8) != 'https://'))
-			{
-				if ($contents = file_get_contents($file))
-				{
-					$hash = sha1($file.$this->ci->config->item('cjsuf'));
-						
-					// Is the target file already in place ?
-					$target_path = 'themes/cache/'.$hash.'.js';
-					if (file_exists($target_path))
-					{
-						$local_list['js'][] = $target_path;
-					}
-					// If not, create it
-					else
-					{
-						if (write_file($target_path, $contents))
-						{
-							$local_list['js'][] = $target_path;
-						}
-						// Target file could not be created, show the original file and log the error
-						else
-						{
-							$local_list['js'][] = $file;
-							log_message('error', "Javascript file failed to write to cache, original file loaded: ".$js_file);
-						}
-	
-					}
-				}
-				else
-				{
-					log_message('error', "Javascript file failed to load: ".$js_file);
-				}
-			}
-			// If it's a remote file add it to the remote queue
-			else
-			{
-				$remote_list['js'][] = $file;
-			}
-				
-			$js_count++;
-		}
-	
-		$output = '';
-		// Process the queue
-		// Remote files are processed first as they are commonly CDN hosted essential files like jQuery
-		foreach ($remote_list['css'] as $remote_file){
-			$output .= '<link rel="stylesheet" type="text/css" href="'.$remote_file.'" media="screen" />';
-		}
-	
-		foreach ($remote_list['js'] as $remote_file){
-			$output .= '<script type="text/javascript" src="'.$remote_file.'"></script>';
-		}
-	
-		foreach ($local_list['css'] as $type => $local_file){
-			$output .= '<link rel="stylesheet" type="text/css" href="'.base_url().$local_file.'" media="screen" />';
-		}
-			
-		foreach ($local_list['js'] as $type => $local_file){
-			$output .= '<script type="text/javascript" src="'.base_url().$local_file.'"></script>';
-		}
-			
-		log_message('debug', $css_count." CSS files loaded by the loader class.");
-		log_message('debug', $js_count." Javascript files loaded by the loader class.");
-			
+		
 		return $output;
 	}
+	
+	
 	
 	
 }
