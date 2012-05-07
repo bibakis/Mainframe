@@ -42,8 +42,8 @@ body { margin: 0; font-size: 1em; line-height: 1.4; }
  * Also: hot pink! (or customize the background color to match your design)
  */
 
-::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #fe57a1; color: #fff; text-shadow: none; }
+::-moz-selection { background: #6E88A3; color: #fff; text-shadow: none; }
+::selection { background: #6E88A3; color: #fff; text-shadow: none; }
 
 
 /* =============================================================================
@@ -52,7 +52,6 @@ body { margin: 0; font-size: 1em; line-height: 1.4; }
 
 a { color: #00e; }
 a:visited { color: #551a8b; }
-a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 
 /* Improve readability when focused and hovered in all browsers: h5bp.com/h */

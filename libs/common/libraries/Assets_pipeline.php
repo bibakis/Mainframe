@@ -199,7 +199,8 @@ class Assets_pipeline
 				if (substr($file,0,4) !== 'http') // Local file
 				{
 					$content = file_get_contents($_SERVER['DOCUMENT_ROOT'].$file);
-					$contents[$file] = ($this->ci->config->item('compress_js'))?JSMin::minify($content):$content;
+					//$contents[$file] = ($this->ci->config->item('compress_js'))?JSMin::minify($content):$content;
+					$contents[$file] = $content;
 				}
 				else // Handle remote files here
 				{
@@ -209,20 +210,36 @@ class Assets_pipeline
 			}
 			$js_code = implode('', $contents);
 			$hash = sha1($js_code);
-			$final_js_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.$hash.'.js';
+			
+			
+			
 		
-			if (!file_exists($final_js_file))
+			if ($this->ci->config->item('compress_js'))
 			{
-				file_put_contents($final_js_file, $js_code);
+				$final_js_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/'.$hash.'.js';
+				
+				if (!file_exists($final_js_file))
+				{
+					file_put_contents($final_js_file, JSMin::minify($js_code));
+				}
+				$output .= '<script type="text/javascript" src="'. base_url() . 'themes/cache/' . $hash . '.js"></script>';
 			}
+			else
+			{
+				$final_u_js_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/u_'.$hash.'.js';
+				file_put_contents($final_u_js_file, $js_code);
+				$output .= '<script type="text/javascript" src="'. base_url() . 'themes/cache/u_' . $hash . '.js"></script>';
+			}
+			
+			
 		
-			$output .= '<script type="text/javascript" src="'. base_url() . 'themes/cache/' . $hash . '.js"></script>';
+			
 		
 		}
 		// If JS files should be handled separately
 		else {
 			foreach ($js_files as $file)
-			{				
+			{	
 				// Compress only local files, ignore the rest
 				if (substr($file,0,4) !== 'http') // Local file
 				{
