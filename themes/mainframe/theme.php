@@ -18,7 +18,7 @@
 <div class="fixed12">
 	<div class="grid_12">
 		<ul class="nav nav-tabs">
-			<li class="<?php active_class('mainframe/dev_tools/unit_testing');?>">
+			<li>
 				<a href="<?php echo base_url();?>mainframe/dev_tools/unit_testing">Unit testing</a>
 			</li>
 			<li>
