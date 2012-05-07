@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+$(function(){
+	$('.filename').click(function(){
+		$(this).parent().next('li').slideToggle('fast');
+	});
+	$('.p_filename').click(function(){
+		$(this).next('ul').slideToggle('fast');
+	});
+});
