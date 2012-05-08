@@ -12,6 +12,9 @@
  * It does so by checking if the uri starts with the $segment_value
  * This is useful mostly in menus where we want to have the active item highlighted.
  * 
+ * If an empty string is provided as a $segment_value the function returns 'active' if
+ * the browser is currently in the index function of the default controller
+ * 
  * For example to check if the uri starts with 'arrangement' do a active_class('arrangement')
  * This will return 'active' if it's true  
  * 
@@ -21,17 +24,42 @@
  */
 function active_class($segment_value, $return = FALSE){
 	$ci =& get_instance();
-
+	
+	//Special case: No segment is provided, or the provided segment is the name of the default helper
+	//and we are in the application root, so the class should be active
+	if(  (! $segment_value || ($ci->router->fetch_class() === $segment_value)) &&
+		 ($ci->router->fetch_class() === $ci->router->routes['default_controller']) && 
+		 ($ci->router->fetch_method() === 'index'))
+	{
+		if($return)
+		{
+			return 'active';
+		}
+		else
+		{
+			echo'active';
+			return TRUE;
+		}
+		
+	}	
+	
+	//If the provided segment matches the current url, return active
+	//All the other cases are being handled here
 	if (strpos($ci->uri->uri_string(), $segment_value) === 0)
 	{
 		if($return)
 		{
 			return 'active';
 		}
-		echo 'active';
+		else
+		{
+			echo 'active';
+			return TRUE;
+		}
 	}
-	else {
-		return false;
+	else 
+	{
+		return FALSE;
 	}
 }
 
@@ -41,216 +69,13 @@ function active_class($segment_value, $return = FALSE){
  * This helper function properly escapes the string and makes sure the js statement unescapes it
  * on page render so your onclick handlers won't break
  * 
- * @param unknown_type $string
+ * @param string $string
  */
 function js_escape($string)
 {
 	return 'unescape(\''.addslashes($string).'\')';
 }
 
-function body_style()
-{
-	if(config('text_direction')=='ltr')
-	{
-		return 'text-align:left !important;';
-	}
-	return 'text-align:right !important;';
-}
-
-/**
- * Shows the provided time according to the application setting
- * @param int $time
- */
-function date_show($time = FALSE)
-{	
-	
-	if(!trim($time) OR !strtotime($time))
-	{
-		return '';
-	}
-	$segments = explode(' ',$time);
-	
-	if(!isset($segments[0]) OR ! $segments[0])
-	{
-		$segments[0] = date('Y-m-d', 0);;
-	}
-	
-	if( ! isset($segments[1]) OR ! $segments[1])
-	{
-		$segments[1] = date('H:i:s.u',0);;
-	}
-	
-	$time = $segments[0].' '.$segments[1];
-
-	$time = substr($time, 0, 22);
-	$time = DateTime::createFromFormat('Y-m-d H:i:s.u', $time);
-	
-	return $time->format(config('date_format'));
-}
-
-/**
- * Shows the provided date according to the application setting
- * @param int $time
- */
-function time_show($time = FALSE)
-{	
-	if(!trim($time) OR !strtotime($time))
-	{
-		return '';
-	}
-	$segments = explode(' ',$time);
-	
-	if(!isset($segments[0]) OR ! $segments[0])
-	{
-		$segments[0] = date('Y-m-d', 0);;
-	}
-	
-	if( ! isset($segments[1]) OR ! $segments[1])
-	{
-		$segments[1] = date('H:i:s.u',0);;
-	}
-	
-	$time = $segments[0].' '.$segments[1];
-
-	$time = substr($time, 0, 22);
-	$time = DateTime::createFromFormat('Y-m-d H:i:s.u', $time);
-	
-	return $time->format(config('time_format'));
-}
-
-function timestamp_show($timestamp = FALSE)
-{
-
-	if(!trim($timestamp) OR !strtotime($timestamp))
-	{
-		return '';
-	}
-	$segments = explode(' ',$timestamp);
-	
-	if(!isset($segments[0]) OR ! $segments[0])
-	{
-		$segments[0] = date('Y-m-d',0);
-	}
-	
-	if( ! isset($segments[1]) OR ! $segments[1])
-	{
-		$segments[1] = date('H:i:s.u',0);
-	}
-	
-	$timestamp = $segments[0].' '.$segments[1];
-
-	$timestamp = substr($timestamp, 0, 22);
-	$timestamp = DateTime::createFromFormat('Y-m-d H:i:s.u', $timestamp);
-	return $timestamp->format(config('date_format').' '.config('time_format'));
-}
-
-/**
- * Receives a string formatted in the application default format and 
- * converts it to to DB-friendly format
- * 
- *  @param $timestamp a timestamp string formatted according to the applications settings
- */
-function db_date_parse($timestamp)
-{
-	if(! trim($timestamp))
-	{
-		return '';
-	}
-	
-	$segments = explode(' ', $timestamp);
-	if(!isset($segments[0]) || !trim($segments[0]))
-	{
-		$segments[0] = date(config('date_format'), 0);
-	}
-	
-	if(!isset($segments[1]) || !trim($segments[1]))
-	{
-		$segments[1] = date(config('time_format'), 0);
-	}
-	
-	
-	
-	$timestamp = implode(' ', $segments);
-	$datetime_obj = DateTime::createFromFormat(config('date_format').' '.config('time_format'), $timestamp);
-	if( ! $datetime_obj)
-	{
-		return '';
-	}
-	return $datetime_obj->format('Y-m-d');
-}
-
-/**
- * Converts the supplied time string from the application default format
- * to DB-friendly format
- * 
- *  @param $timestamp a timestamp string formatted according to the applications settings
- */
-function db_time_parse($timestamp)
-{
-	if(! trim($timestamp))
-	{
-		return '';
-	}
-	
-	$segments = explode(' ', $timestamp);
-	if(!isset($segments[0]) || !trim($segments[0]))
-	{
-		$segments[0] = date(config('date_format'), 0);
-	}
-	
-	if(!isset($segments[1]) || !trim($segments[1]))
-	{
-		$segments[1] = date(config('time_format'), 0);
-	}
-	
-	
-	
-	$timestamp = implode(' ', $segments);
-	$datetime_obj = DateTime::createFromFormat(config('date_format').' '.config('time_format'), $timestamp);
-	if( ! $datetime_obj)
-	{
-		return '';
-	}
-	
-	return $datetime_obj->format('H:i:s');
-}
-
-/**
- * Converts the supplied datetime string from the application default format
- * to DB-friendly format
- * 
- * @param $timestamp a timestamp string formatted according to the applications settings
- */
-function db_datetime_parse($timestamp)
-{
-	
-	if(! trim($timestamp))
-	{
-		return '';
-	}
-	
-	$segments = explode(' ', $timestamp);
-	if(!isset($segments[0]) || !trim($segments[0]))
-	{
-		$segments[0] = date(config('date_format'), 0);
-	}
-	
-	if(!isset($segments[1]) || !trim($segments[1]))
-	{
-		$segments[1] = date(config('time_format'), 0);
-	}
-	
-	
-	
-	$timestamp = implode(' ', $segments);
-	$datetime_obj = DateTime::createFromFormat(config('date_format').' '.config('time_format'), $timestamp);
-	if( ! $datetime_obj)
-	{
-		return '';
-	}
-
-	return $datetime_obj->format('Y-m-d H:i:s');
-}
 
 /**
  * Echoes 'disabled="disabled"' id the expression provided evaluates to 'true',
@@ -301,50 +126,6 @@ function ui_checked($expression)
 		return TRUE;
 	}
 	return FALSE;
-}
-
-/*
- * Returns an array with breadcrumb links
- */
-function breadcrumb()
-{
-	$ci =& get_instance();
-
-	$current_path = $ci->uri->uri_string();
-	
-	// Break down the current path
-	$parts = explode('/',$current_path);
-	
-	// Breadcrumb items
-	$items = array();
-	
-	$sections = $ci->db->get('sections');
-	
-	$i = 0;
-	for ($i = count($parts); $i > 0; $i--)
-	{
-		$path = implode('/', $parts);
-		foreach ($sections->result() as $section)
-		{
-			if (($section->path == $path) OR ($section->path == ($path.'/index')))
-			{
-				$items[$i] = array(
-					'title'		=> $section->title,
-					'path'		=> $section->path
-				);
-			}
-		}
-		$last = array_pop($parts);
-		if ($last == 'index')
-		{
-			array_pop($parts);
-			$i--;
-		}
-	} 
-	$items = array_reverse($items);
-	
-	return $items;
-	
 }
 
 
