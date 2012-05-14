@@ -1,52 +1,172 @@
+<!-- 
+	1920 Fluid Grid System
+	Version:	1.0 beta
+	Released:	14/5/2012
+	Author:		Vangelis Bibakis
+	Web:		http://bibakis.com
+	Twitter:	@bibakis
+-->
 <html>
 <head>
 	<link rel="stylesheet" href="./1920.gs.css" media="screen" />
+	<style type="text/css">
+		/* Just for the demo, you don't have to use these */
+		.grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11, .grid12,
+		.grid_1, .grid_2, .grid_3, .grid_4, .grid_5, .grid_6, .grid_7, .grid_8, .grid_9, .grid_10, .grid_11, .grid_12 {
+			margin-top: 20px;
+			background-color: #eee;
+			text-align: center;
+			padding: 20px 0;
+		}
+		p,pre {text-align: left;}
+	</style>
 </head>
 <body>
-	<!-- Version 0.1 -->
 	<div class="row">
-		<div class="grid1">1</div>
-		<div class="grid11">11</div>
+		<div class="grid_4">
+			<h2>1920 Fluid grid system</h2>
+			<p>
+				Version: 1.0 beta<br>
+				Released: 14/5/2012<br>
+				Distributed as part of <a href="http://mainframephp.com">Mainframe PHP framework</a><br>
+				<br>
+				Author: <a href="http://bibakis.com">Vangelis Bibakis</a><br>
+				Twitter: <a href="https://twitter.com/#!/bibakis">@bibakis</a><br>
+			</p>
+		</div>
+		<div class="grid_4">
+			<h2>How to use it</h2>
+			<pre style="text-align: left; margin-left: -180px;">
+			<b>Div style</b>:<br>
+			&lt;div class="row"&gt;<br>
+				&emsp;&lt;div class="grid_4"&gt;<br>
+					&emsp;&emsp;Some text here<br>
+				&emsp;&lt;/div&gt;<br>
+				&emsp;&lt;div class="grid_8"&gt;<br>
+					&emsp;&emsp;And some more<br>
+				&emsp;&lt;/div&gt;<br>
+			&lt;/div&gt;<br><br>
+			<b>Clear style</b>:<br>
+			<br>
+				&lt;div class="grid_4"&gt;<br>
+					&emsp;Some text here<br>
+				&lt;/div&gt;<br>
+				&lt;div class="grid_8"&gt;<br>
+					&emsp;And some more<br>
+				&lt;/div&gt;<br>
+			&lt;div class="clear"&gt;&lt;/div&gt;<br>
+			<br>
+			<em>.clear {clear:both;}</em><br>
+			</pre>			
+		</div>
+		<div class="grid_4">
+			<h2>Also...</h2>
+			<p>
+				Use <b>gridX</b> for simple boxes, and <b>grid_X</b> for boxes with margins<br><br>
+			</p>
+			<p>
+				We recommend that you use 1920.gs along with a nice CSS reset. We ship Mainframe PHP
+				with html5 boilerplate's reset file and recommend it.
+			</p>
+			
+			<br>
+			<h2>Known limitations:</h2>
+			<p>
+				Due to the way that browsers calculate percentages you won't be able to achieve pixel perfect layouts across all browsers.
+				This a technical browser limitation and not a 1920 specific issue. I chose to ignore this, since in my opinion, the benefits
+				of a minimal fluid layout codebase far outweight such issues.
+			</p> 
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="row">
+		<div class="grid1">grid1</div>
+		<div class="grid11">grid11</div>
 		<div style="clear:both;"></div>
 	</div>
 	<div class="row">
-		<div class="grid2">2</div>
-		<div class="grid10">10</div>
+		<div class="grid2">grid2</div>
+		<div class="grid10">grid10</div>
 	</div>
 	<div class="row">
-		<div class="grid3">3</div>
-		<div class="grid9">9</div>
+		<div class="grid3">grid3</div>
+		<div class="grid9">grid9</div>
 	</div>
 	<div class="row">
-		<div class="grid4">4</div>
-		<div class="grid8">8</div>
+		<div class="grid4">grid4</div>
+		<div class="grid8">grid8</div>
 	</div>
 	<div class="row">
-		<div class="grid5">5</div>
-		<div class="grid7">7</div>
+		<div class="grid5">grid5</div>
+		<div class="grid7">grid7</div>
 	</div>
 	<div class="row">
-		<div class="grid6">6</div>
-		<div class="grid6">6</div>
+		<div class="grid6">grid6</div>
+		<div class="grid6">grid6</div>
 	</div>
 	<div class="row">
-		<div class="grid4">4</div>
-		<div class="grid4">4</div>
-		<div class="grid4">4</div>
+		<div class="grid4">grid4</div>
+		<div class="grid4">grid4</div>
+		<div class="grid4">grid4</div>
 	</div>
 	<div class="row">
-		<div class="grid3">3</div>
-		<div class="grid3">3</div>
-		<div class="grid3">3</div>
-		<div class="grid3">3</div>
+		<div class="grid3">grid3</div>
+		<div class="grid3">grid3</div>
+		<div class="grid3">grid3</div>
+		<div class="grid3">grid3</div>
 	</div>
 	<div class="row">
-		<div class="grid2">2</div>
-		<div class="grid2">2</div>
-		<div class="grid2">2</div>
-		<div class="grid2">2</div>
-		<div class="grid2">2</div>
-		<div class="grid2">2</div>
+		<div class="grid2">grid2</div>
+		<div class="grid2">grid2</div>
+		<div class="grid2">grid2</div>
+		<div class="grid2">grid2</div>
+		<div class="grid2">grid2</div>
+		<div class="grid2">grid2</div>
+	</div>
+	
+	<div class="row">
+		<div class="grid_1">grid_1</div>
+		<div class="grid_11">grid_11</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div class="row">
+		<div class="grid_2">grid_2</div>
+		<div class="grid_10">grid_10</div>
+	</div>
+	<div class="row">
+		<div class="grid_3">grid_3</div>
+		<div class="grid_9">grid_9</div>
+	</div>
+	<div class="row">
+		<div class="grid_4">grid_4</div>
+		<div class="grid_8">grid_8</div>
+	</div>
+	<div class="row">
+		<div class="grid_5">grid_5</div>
+		<div class="grid_7">grid_7</div>
+	</div>
+	<div class="row">
+		<div class="grid_6">grid_6</div>
+		<div class="grid_6">grid_6</div>
+	</div>
+	<div class="row">
+		<div class="grid_4">grid_4</div>
+		<div class="grid_4">grid_4</div>
+		<div class="grid_4">grid_4</div>
+	</div>
+	<div class="row">
+		<div class="grid_3">grid_3</div>
+		<div class="grid_3">grid_3</div>
+		<div class="grid_3">grid_3</div>
+		<div class="grid_3">grid_3</div>
+	</div>
+	<div class="row">
+		<div class="grid_2">grid_2</div>
+		<div class="grid_2">grid_2</div>
+		<div class="grid_2">grid_2</div>
+		<div class="grid_2">grid_2</div>
+		<div class="grid_2">grid_2</div>
+		<div class="grid_2">grid_2</div>
 	</div>
 </body>
 </html>

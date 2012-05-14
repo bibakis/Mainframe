@@ -1,38 +1,47 @@
+/*
+1920 Fluid Grid System
+Version:    1.0 beta
+Released:   14/5/2012
+Author:     Vangelis Bibakis
+Web:        http://bibakis.com
+Twitter:    @bibakis
+*/
 body,html {padding: 0; margin: 0;}
 
-/*.row	{}*/
+.row {width: 100%; clear: both;}
 
-.grid1,
-.grid2,
-.grid3,
-.grid4,
-.grid5,
-.grid6,
-.grid7,
-.grid8,
-.grid9,
-.grid10,
-.grid11,
-.grid12 {
+/* .gridX for plain boxes */
+.grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11, .grid12 {
 float: left;
-margin-left: 1%;
-margin-right: 1%;
-margin-top: 20px;
-background-color: #eee;
-text-align: center;
-padding: 20px 0;
 }
 
-.grid1	{width: 6.33%;}
-.grid2	{width: 14.66%;}
-.grid3	{width: 23%;}
-.grid4	{width: 31.33%;}
-.grid5	{width: 39.66%;}
-.grid6	{width: 48%;}
-.grid7	{width: 56.33%;}
-.grid8	{width: 64.66%;}
-.grid9	{width: 73%;}
-.grid10	{width: 81.33%;}
-.grid11	{width: 89.66%;}
-.grid12 	{width: 98%;}
+.grid1	{width: 8.33%;}
+.grid2	{width: 16.66%;}
+.grid3	{width: 24.99%;}
+.grid4	{width: 33.32%;}
+.grid5	{width: 41.66%;}
+.grid6	{width: 50%;}
+.grid7	{width: 58.33%;}
+.grid8	{width: 66.66%;}
+.grid9	{width: 75%;}
+.grid10	{width: 83.33%;}
+.grid11	{width: 91.66%;}
+.grid12 {width: 100%;}
 
+/* .grid_X for margins */
+.grid_1, .grid_2, .grid_3, .grid_4, .grid_5, .grid_6, .grid_7, .grid_8, .grid_9, .grid_10, .grid_11, .grid_12 {
+float: left; margin-left: 1%; margin-right: 1%;
+}
+
+.grid_1 {width: 6.33%;}
+.grid_2 {width: 14.66%;}
+.grid_3 {width: 23%;}
+.grid_4 {width: 31.32%;}
+.grid_5 {width: 39.66%;}
+.grid_6 {width: 48%;}
+.grid_7 {width: 56.33%;}
+.grid_8 {width: 64.66%;}
+.grid_9 {width: 73%;}
+.grid_10 {width: 81.33%;}
+.grid_11 {width: 89.66%;}
+.grid_12 {width: 98%;}
