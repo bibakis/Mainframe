@@ -1,28 +1,6 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * MainframePHP
- *
- * The complete PHP framework
- *
- * @package		Mainframe
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
- * @since		Version 1.0
- * @filesource
- */
-
-// ------------------------------------------------------------------------
-
-/**
- * CodeIgniter Text Helpers
- *
- * @package		CodeIgniter
- * @subpackage	Helpers
- * @category	Helpers
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/helpers/text_helper.html
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/*
+ * Functions related to 'debugging' your application.
  */
 
 // ------------------------------------------------------------------------

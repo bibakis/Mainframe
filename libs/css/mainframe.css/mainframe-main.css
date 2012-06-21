@@ -1,22 +1,22 @@
-/* 
+/*
  * Mainframe CSS framework v 0.2
  * Released 4 or August 2009
  * Author: Vangelis Bibakis, http://bibakis.com
  * License: Creative Commons Attribution-Share Alike 3.0 Unported License
  * License at: http://creativecommons.org/licenses/by-sa/3.0/
- * 
+ *
  * Uses parts of other open source software:
  * 960 grid system: http://960.gs/
  * YUI Grids CSS: http://developer.yahoo.com/yui/grids/
  *
- * Bugs ? Feature requests ? 
+ * Bugs ? Feature requests ?
  * My email is at my site on the "About me" page.
 **/
 
-/* Reset (You shouldn't edit this) */
+/* Reset */
 html	{color: #000; background: #FFF;}
-body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, ul, ol, li, 
-pre, code, form, fieldset, legend, input, button, textarea, 
+body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, ul, ol, li,
+pre, code, form, fieldset, legend, input, button, textarea,
 p, blockquote, th, td {margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; text-align: left;}
 ul, ol, li	{margin: 0 0 0.1em 1em;}
 
@@ -45,22 +45,8 @@ h5 {font-size: 102.1792%;}
 h6 {font-size: 82.4361%;}
 
 p	{text-align: left;}
-/* Grid (You shouldn't edit this)
-Mainframe offers 3 types of grids 
-1) Fixed, 960px width, 12 columns
-2) Fixed, 960px width, 16 columns
-3) Fluid 100% width (under construction) 
-This is a partial implementation of the grid system.
-For a complete implementation include the mainframe-grid.css file.
-----------------------------------------------------------------------------------------------------*/
-body	{text-align: center;}
-.fixed12, .fixed16, .fixed960, .fixed980  {margin-left: auto; margin-right: auto; text-align: left;}
-.fixed12, .fixed16, .fixed960 {width: 960px;}
-.fixed980 {width: 980px;}
-.fluid	{margin: 0 auto; width: auto; text-align: left;}
 
-
-/* Cleaners & Spacers (You shouldn't edit this)
+/* Cleaners & Spacers
 ----------------------------------------------------------------------------------------------------*/
 /* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
 .clearfix:after	{clear: both; content: ' '; display: block; font-size: 0; line-height: 0; visibility: hidden; width: 0; height: 0;}
@@ -90,14 +76,14 @@ using any ugly tricks like <br> or inline styles. Use any of these instead of .c
 ----------------------------------------------------------------------------------------------------*/
 html		{min-height: 100%;height:100% !important;height:100%;} /* Making backgrounds work properly*/
 body		{font:13px/1.231 arial,helvetica,clean,sans-serif; *font-size:small; /* for IE6/7 */ *font:x-small; /* for IE Quirks Mode */ min-height: 100%;height:auto !important;height:100%;}
-/* Nudge down to get to 13px equivalent for these form elements */ 
+/* Nudge down to get to 13px equivalent for these form elements */
 select, input, button, textarea	{font:99% inherit; border: 1px solid #aaa;}
 input, button {padding: 2px;}
 textarea	{padding: 4px;}
 table		{font-size:inherit; font:100%; /* To help tables remember to inherit */}
 pre, code, kbd, samp, tt {font-family:monospace; *font-size:108%; line-height:100%; /* Bump up IE to get to 13px equivalent for these fixed-width elements */}
 
-/* Styling other elements & some frequently used stuff (Feel free to edit bellow this line)
+/* Styling other elements & some frequently used stuff
 ----------------------------------------------------------------------------------------------------*/
 hr		{border: 0 #aaa solid; border-top-width: 1px; clear: both; height: 0;}
 fieldset	{border: 1px solid #aaa; padding: 10px;}

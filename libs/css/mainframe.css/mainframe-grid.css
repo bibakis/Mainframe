@@ -1,3 +1,17 @@
+/* Grid
+Mainframe offers 3 types of grids
+1) Fixed, 960px width, 12 columns
+2) Fixed, 960px width, 16 columns
+3) Fluid 100% width (under construction)
+This is a partial implementation of the grid system.
+For a complete implementation include the mainframe-grid.css file.
+----------------------------------------------------------------------------------------------------*/
+body	{text-align: center;}
+.fixed12, .fixed16, .fixed960, .fixed980  {margin-left: auto; margin-right: auto; text-align: left;}
+.fixed12, .fixed16, .fixed960 {width: 960px;}
+.fixed980 {width: 980px;}
+.fluid	{margin: 0 auto; width: auto; text-align: left;}
+
 /* `Grid >> Global */
 .grid_1, .grid_2, .grid_3, .grid_4, .grid_5, .grid_6, .grid_7, .grid_8,
 .grid_9, .grid_10, .grid_11, .grid_12, .grid_13, .grid_14, .grid_15, .grid_16

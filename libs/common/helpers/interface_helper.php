@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
  * Functions related to user interface
  * These functions intentionaly echo their output most of the times
@@ -62,6 +62,7 @@ function active_class($segment_value, $return = FALSE){
 		return FALSE;
 	}
 }
+
 
 /**
  * Returns a string that is properly escaped so it won't break your javascript

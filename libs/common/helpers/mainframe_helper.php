@@ -1,4 +1,9 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/*
+ * Every little thing that doesn't fit in any other helper
+ */
+
+
 /*
  * Checks if a link should have the class 'active'.
  * It does so by checking if the uri starts with the $segment_value
