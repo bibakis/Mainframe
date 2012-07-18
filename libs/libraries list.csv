@@ -1,8 +1,9 @@
 Name;Version;Type;Filename;URL;Description
-1920.gs;0.1;css;/css/1920.gs/*;;A fluid css grid for resolutions up to HD (1920x1080)
+Foundation;3.0.5;css;/css/foundation-3.0.5/*;http://foundation.zurb.com/;An advanced, responsive front-end framework.
+Twitter Bootstrap;2.0.2;css;/css/bootstrap/*;http://twitter.github.com/bootstrap/;Twitter bootstrap with support for responsive design
+1920.gs;0.1;css;/css/1920.gs/*;;A fluid and extremely minimal css grid
 Mainframe CSS;0.3.1.dev;css;/css/mainframe.css/*;https://github.com/bibakis/Mainframe-CSS;The mainframe CSS framework
 HTML5 boilerplate CSS;3.0;css;/css/html5boilerplate30.css;http://html5boilerplate.com/;The CSS included in HTML5 boilerplate (when you just need a modern CSS reset)
-Twitter Bootstrap;2.0.2;css;/css/bootstrap/*;http://twitter.github.com/bootstrap/;Twitter bootstrap with support for responsive design
 jQuery mobile;1.0;js;/js/jquery.mobile-1.0.min.js;http://jquerymobile.com/;jQuery mobile
 jQuery;1.7;js;/js/jquery-1.7.min.js;http://jquery.com/;jQuery
 jQuery UI;1.8.21;js;/js/jquery-ui-1.8.21.custom.min.js;http://jqueryui.com/home;jQuery UI provides abstractions for low-level interaction and animation, advanced effects and high-level, themeable widgets
