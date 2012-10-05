@@ -239,7 +239,7 @@ class MY_Loader extends CI_Loader {
 			$css_parts = explode('/', $css);
 			array_pop($css_parts);
 			$css_path = implode('/', $css_parts);
-			@mkdir($css_path, 0, true);
+			@mkdir($css_path, 0777, true);
 			
 			// Compile the $less file onto $css
 			lessc::ccompile($less, $css);			
