@@ -8,126 +8,33 @@
  */
 
 /*
- * Checks if a link should have the class 'active'.
- * It does so by checking if the uri starts with the $segment_value
- * This is useful mostly in menus where we want to have the active item highlighted.
- * 
- * If an empty string is provided as a $segment_value the function returns 'active' if
- * the browser is currently in the index function of the default controller
- * 
- * For example to check if the uri starts with 'arrangement' do a active_class('arrangement')
- * This will return 'active' if it's true  
- * 
- * @param		string		$segment_value		The start of the URL you want to check against
- * @param		bool		$return				If set, the function returns the class instead of echoing it
- * @returns		string							Echoes 'active' on success, returns false on failure
- */
-function active_class($segment_value, $return = FALSE){
+ * Shorthand for $this->load->view()
+*/
+function view($view, $params = FALSE){
 	$ci =& get_instance();
-	
-	//Special case: No segment is provided, or the provided segment is the name of the default helper
-	//and we are in the application root, so the class should be active
-	if(  (! $segment_value || ($ci->router->fetch_class() === $segment_value)) &&
-		 ($ci->router->fetch_class() === $ci->router->routes['default_controller']) && 
-		 ($ci->router->fetch_method() === 'index'))
-	{
-		if($return)
-		{
-			return 'active';
-		}
-		else
-		{
-			echo'active';
-			return TRUE;
-		}
-		
-	}	
-	
-	//If the provided segment matches the current url, return active
-	//All the other cases are being handled here
-	if (strpos($ci->uri->uri_string(), $segment_value) === 0)
-	{
-		if($return)
-		{
-			return 'active';
-		}
-		else
-		{
-			echo 'active';
-			return TRUE;
-		}
-	}
-	else 
-	{
-		return FALSE;
-	}
+	$ci->load->view($view, $params);
 }
 
-
-/**
- * Returns a string that is properly escaped so it won't break your javascript
- * 
- * This helper function properly escapes the string and makes sure the js statement unescapes it
- * on page render so your onclick handlers won't break
- * 
- * @param string $string
- */
-function js_escape($string)
-{
-	return 'unescape(\''.addslashes($string).'\')';
+/*
+ * Shorthand for $this->load->css()
+*/
+function css($css, $params = FALSE){
+	$ci =& get_instance();
+	$ci->load->css($css, $params);
 }
 
-
-/**
- * Echoes 'disabled="disabled"' id the expression provided evaluates to 'true',
- * returns FALSE if it doesn't
- * 
- * Useful for populating forms with many fields that need to be checked if they are active
- * 
- * @param expression $expression
- */
-function ui_disabled($expression)
-{
-	$e = $expression;
-	if(is_callable($expression))
-	{
-		$e = $expression();
-	}
-	
-	if($e)
-	{
-		echo 'disabled="disabled"';
-		return TRUE;
-	}
-	
-	return FALSE;
-	
+/*
+ * Shorthand for $this->load->less()
+*/
+function less($less, $params = FALSE){
+	$ci =& get_instance();
+	$ci->load->less($less, $params);
 }
 
-
-/**
- * Echoes 'checked="checked"' id the expression provided evaluates to 'true',
- * returns FALSE if it doesn't
- * 
- * Useful for populating forms with many checkbox fields that need to be checked
- * 
- * @param expression $expression
- */
-function ui_checked($expression)
-{
-	$e = $expression;
-	if(is_callable($expression))
-	{
-		$e = $expression();
-	}
-	
-	if($e)
-	{
-		echo 'checked="checked"';
-		return TRUE;
-	}
-	return FALSE;
+/*
+ * Shorthand for $this->load->js()
+*/
+function js($js, $params = FALSE){
+	$ci =& get_instance();
+	$ci->load->js($js, $params);
 }
-
-
-

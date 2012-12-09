@@ -5,13 +5,13 @@
 	<meta name="keywords" content="" />
 	<meta name="language" content="en" />
 	<title>Mainframe - The complete PHP framework</title>
-	<?php $this->load->view('mainframe.js.php');?>
-	<?php $this->load->css('/libs/css/mainframe.css/mainframe-grid.css', 'first');?>
-	<?php $this->load->css('/libs/css/mainframe.css/mainframe-main.css');?>
-	<?php $this->load->css('/themes/demo/css/styles.css', 'last');?>
-	<?php $this->load->css('http://yui.yahooapis.com/3.5.0/build/cssgrids/grids-min.css', 'last');?>
+	<?php view('mainframe.js.php');?>
+	<?php css('/libs/css/mainframe.css/mainframe-grid.css', 'first');?>
+	<?php css('/libs/css/mainframe.css/mainframe-main.css');?>
+	<?php css('/themes/demo/css/styles.css', 'last');?>
+	<?php css('http://yui.yahooapis.com/3.5.0/build/cssgrids/grids-min.css', 'last');?>
 	
-	<?php $this->load->js('/libs/js/jquery-1.7.min.js', 'first');?>
+	<?php js('/libs/js/jquery-1.7.min.js', 'first');?>
 	
 	<?php echo $this->load->assets();?>
 </head>
