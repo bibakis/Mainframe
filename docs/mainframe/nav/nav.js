@@ -12,7 +12,7 @@ function create_menu(basepath)
 		'<td class="td" valign="top">' +
 
 		'<ul>' +
-//		'<li><a href="'+base+'sample/sample.html">Sample</a></li>' +
+		'<li><a href="'+base+'../index.html">Documentation home</a></li>' +
 		'</ul>' +
 
 		'<h3>Basic Info</h3>' +
@@ -39,7 +39,7 @@ function create_menu(basepath)
 
 		'<h3>General Topics</h3>' +
 		'<ul>' +
-//		'<li><a href="'+base+'sample/sample.html">Sample</a></li>' +
+		'<li><a href="'+base+'general/themes.html">Themes</a></li>' +
 		'</ul>' +
 
 		'<h3>Additional Resources</h3>' +

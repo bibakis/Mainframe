@@ -1,0 +1,10 @@
+div.align_center {
+	margin: 0 auto;
+	text-align: center;
+}
+
+p.legend {
+	color: #999;
+	font-style: italic;
+	margin: 0 !important;
+}

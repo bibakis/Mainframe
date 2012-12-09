@@ -6,9 +6,9 @@ class Home extends CI_Controller {
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
+	 * 		http://example.com/index.php/home
 	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
+	 * 		http://example.com/index.php/home/index
 	 *	- or -
 	 * Since this controller is set as the default controller in 
 	 * config/routes.php, it's displayed at http://example.com/
@@ -24,12 +24,6 @@ class Home extends CI_Controller {
 		
 	}
 	
-	// TODO: This is unused at the moment, use it somehow
-	public function about()
-	{
-		$this->load->theme('mainframe');
-		$this->load->view('about');
-	}
 }
 
 /* End of file welcome.php */

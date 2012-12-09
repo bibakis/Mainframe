@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Mainframe User Guide</title>
+
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+<link rel='stylesheet' type='text/css' media='all' href='../extras.css' />
+
+<script type="text/javascript" src="../nav/jquery.js"></script>
+<script type="text/javascript" src="../nav/nav.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv='pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='Mainframe Dev Team' />
+<meta name='description' content='Mainframe User Guide' />
+
+</head>
+<body>
+
+	<!-- START NAVIGATION -->
+	<div id="nav">
+		<div id="nav_inner">
+			<script type="text/javascript">
+				create_menu('null');
+			</script>
+		</div>
+	</div>
+	<div id="nav2">
+		<a name="top"></a><a href="javascript:void(0);"
+			onclick="myHeight.slideToggle('fast');"><img
+			src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0"
+			title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a>
+	</div>
+	<div id="wrapper">
+		<div id="masthead">
+			<table cellpadding="0" cellspacing="0" border="0" style="width: 100%">
+				<tr>
+					<td><h1>Mainframe user guide 0.1α</h1></td>
+					<td id="breadcrumb_right"><a href="toc.html">Table of
+							Contents Page</a></td>
+				</tr>
+			</table>
+		</div>
+		<!-- END NAVIGATION -->
+	
+	
+		<table cellpadding="0" cellspacing="0" border="0" style="width: 100%">
+			<tr>
+				<td id="breadcrumb"><a href="http://mainframephp.com/">Mainframe Home</a>
+				 &nbsp;&#8250;&nbsp; Mainframe User Guide</td>
+				<td id="searchbox">
+					<form method="get" action="http://www.google.com/search">
+						<input type="hidden" name="as_sitesearch" id="as_sitesearch"
+							value="mainframephp.com/docs/mainframe/" />Search User Guide&nbsp; 
+						<input type="text" class="input" style="width: 200px;" name="q" id="q"
+							size="31" maxlength="255" value="" />&nbsp;
+						<input type="submit" class="submit" name="sa" value="Go" />
+					</form>
+				</td>
+			</tr>
+		</table>
+	
+	
+	
+		<br clear="all" />
+	
+	
+		<!-- START CONTENT -->
+		<div id="content">
+	
+	
+	
+			<h2>Themes</h2>
+	
+			<p>
+				Mainframe supports themes to make it easier to implement a consistent interface in your application.<br>
+				Do not think of themes in the sense of a wordpress theme where all presentation files are bundled in
+				a single package. In Mainframe all presentation files are still closely related to each other, but you won't
+				be able to distribute a theme in a zip file since themes in Mainframe are mostly a convention.
+			</p>
+			<p>
+				Themes are a way to organize your presentation layer files (views, css, js) in a way that makes it easy
+				for you to make small incremental updates to your interface. This philosophy is also present in Mainframe's plugin
+				system.
+			</p>
+	
+	
+			<h2>Loading themes</h2>
+	
+			<p>
+				If you got Mainframe up and running, then you already have a theme running as well.
+				Let's take a look at Mainframe's existing code and see how it's done.
+			</p>
+			
+			<p>
+				First let's have a look at the default controller in <dfn>/app/controllers/home.php</dfn>.<br>
+				The first line inside the index() method is:
+				<code>$this->load->theme('demo');</code>
+				This tells Mainframe that it should use the demo theme to render any view used in this method.
+			</p>
+	
+	
+	
+			<h2>How themes work</h2>
+	
+			<p>
+				Everytime you load a view after loading a theme, Mainframe takes all the output from that view,
+				and puts it in the place of the <kbd>$content</kbd> variable inside the <dfn>theme.php</dfn> file. 
+				Then it renders everything back to the browser.
+			</p>
+			<p>
+				Since the purpose of the theme is to be used repeatedly for all views, it is the one that calls all 
+				necessary CSS, Less, JavaScript and image files. These files are typicaly located for your convenience, 
+				in the corresponding folders inside <dfn>/themes/theme_name/</dfn>.
+			</p>
+	
+			<div class="align_center">
+				<img src="../images/pages/theme-structure.png">
+				<p class="legend">A view rendered within a theme</p>
+			</div>
+	
+	
+		</div>
+		<!-- END CONTENT -->
+	
+	
+		<div id="footer">
+			<p>
+				<a href="#top">Top of Page</a>
+			</p>
+			<p>
+				<a href="localhost">MainframePHP development group</a> &nbsp;&middot;&nbsp;
+				Copyright &#169; 2006 - 2012 &nbsp;&middot;&nbsp; 
+				<a href="http://bibakis.com/">Bibakis.com</a>
+			</p>
+		</div>
+	</div>
+
+
+</body>
+</html>
