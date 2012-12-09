@@ -120,8 +120,31 @@
 				<img src="../images/pages/theme-structure.png">
 				<p class="legend">A view rendered within a theme</p>
 			</div>
+			
+			<br><br>
 	
-	
+			<p>
+				In order for the theme to be able to load your views correctly, the view files must be placed in a folder named after
+				the theme. <br>
+				For example: <dfn>/app/views/theme_name/view.php</dfn>.
+			</p>
+			<p>
+				However when loading a view you just use the view name, just like in a vanilla CodeIgniter installation:
+				<code>$this->load->view('view');</code>
+			</p>
+			
+			
+			<h2>Loading assets in themes</h2>
+			
+			<p>
+				Any files you load using the shorthands of the interface helper (CSS, LESS &amp; JavaScript) will be placed<br>
+				in the location specified by <kbd>$this->load->assets()</kbd>
+			</p>
+			
+			<p>
+				Of course you can always overide the asset loading using normal HTML when you see fit.
+			</p>
+			
 		</div>
 		<!-- END CONTENT -->
 	
