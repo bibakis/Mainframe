@@ -32,4 +32,29 @@ function active_class($segment_value, $return = FALSE){
 	}
 }
 
- 
+/**
+ * Simplifies the form validation
+ */
+function validate($rules = array())
+{
+	$ci =& get_instance();
+
+	// If there are no rules set for the validation then just check
+	// if there was a form submited or not
+	if (count($rules) == 0){
+		if (count($_POST) > 0){
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}
+
+	$ci->load->library('form_validation');
+
+	foreach ($rules as $rule){
+		$ci->form_validation->set_rules($rule, $rule, 'required');
+	}
+
+	return $ci->form_validation->run();
+}
