@@ -99,7 +99,7 @@ class Assets_pipeline
 		// Load the necessary compression libraries if needed
 		if ($this->ci->config->item('compress_css'))
 		{
-			require_once '/libs/php/cssmin.php';
+			require_once './libs/php/cssmin.php';
 			$CSSmin = new CSSmin;
 		}
 		
@@ -183,7 +183,7 @@ class Assets_pipeline
 		// Load the necessary compression libraries if needed
 		if ($this->ci->config->item('compress_js'))
 		{
-			require_once '/libs/php/JSMin.php';
+			require_once './libs/php/JSMin.php';
 		}
 	
 		
