@@ -58,3 +58,12 @@ function validate($rules = array())
 
 	return $ci->form_validation->run();
 }
+
+/*
+ * Shorthand for $this->session->userdata('something')
+ */
+function session($item)
+{
+	$ci &= get_instance();
+	return $ci->session->userdata($item);
+}
