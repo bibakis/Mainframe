@@ -59,11 +59,36 @@ function validate($rules = array())
 	return $ci->form_validation->run();
 }
 
+
+
+/*
+ * Returns the current datetime formated for mysql's datetime field
+ */
+function now_mysql(){
+	return(date ("Y-m-d H:i:s"));
+}
+
+
+
+
+
+// Shorthands !
+
+/*
+ * Shorthand for $this->input->post()
+ */
+function post($item = false)
+{
+	$ci = & get_instance();
+	return $ci->input->post($item);
+}
+
+
 /*
  * Shorthand for $this->session->userdata('something')
  */
-function session($item)
+function session($item = false)
 {
-	$ci &= get_instance();
+	$ci =& get_instance();
 	return $ci->session->userdata($item);
 }

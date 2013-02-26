@@ -9,7 +9,16 @@
 			<li><a href="http://mainframephp.com/page/documentation">Documentation</a></li>
 			<li><a href="http://mainframephp.com/">Mainframe home page</a></li>
 		</ul>
+		
+		<?php if (session('user_id')):?>
+			<br>
+			user_id: <?php echo session('user_id');?>
+			<br><a href="<?php echo base_url()?>user/logout/">Logout</a>
+		<?php endif;?>
+	
 	</div>
 
+	
+	
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>

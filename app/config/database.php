@@ -48,9 +48,9 @@ $active_group = 'local';
 $active_record = TRUE;
 
 $db['local']['hostname'] = 'localhost';
-$db['local']['username'] = '';
-$db['local']['password'] = '';
-$db['local']['database'] = '';
+$db['local']['username'] = 'soft_mainframe';
+$db['local']['password'] = 'soft_mainframe';
+$db['local']['database'] = 'soft_mainframe';
 $db['local']['dbdriver'] = 'mysql';
 $db['local']['dbprefix'] = '';
 $db['local']['pconnect'] = TRUE;
