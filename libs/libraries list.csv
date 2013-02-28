@@ -1,6 +1,6 @@
 Name;Version;Type;Filename;URL;Description
 Foundation;3.0.5;css;/css/foundation-3.0.5/*;http://foundation.zurb.com/;An advanced, responsive front-end framework.
-Twitter Bootstrap;2.0.2;css;/css/bootstrap/*;http://twitter.github.com/bootstrap/;Twitter bootstrap with support for responsive design
+Twitter Bootstrap;2.3.0;css;/css/bootstrap/*;http://twitter.github.com/bootstrap/;Twitter bootstrap with support for responsive design
 1920.gs;0.1;css;/css/1920.gs/*;;A fluid and extremely minimal css grid
 Mainframe CSS;0.3.1.dev;css;/css/mainframe.css/*;https://github.com/bibakis/Mainframe-CSS;The mainframe CSS framework
 HTML5 boilerplate CSS;3.0;css;/css/html5boilerplate30.css;http://html5boilerplate.com/;The CSS included in HTML5 boilerplate (when you just need a modern CSS reset)
