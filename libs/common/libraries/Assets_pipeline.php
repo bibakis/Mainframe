@@ -59,6 +59,7 @@ class Assets_pipeline
 
 
 				file_put_contents($final_css_file, $css_code);
+				log_message('debug', 'Assets pipeline created file: '. $final_css_file);
 			}
 			
 			$output .= '<link rel="stylesheet" type="text/css" href="'. base_url() . 'themes/cache/'.sha1($hash).'.css" media="screen" />';			
@@ -74,6 +75,7 @@ class Assets_pipeline
 				{
 					file_put_contents($final_css_file, $CSSmin->run(file_get_contents($_SERVER['DOCUMENT_ROOT'].$file)));
 					$output .= '<link rel="stylesheet" type="text/css" href="'. base_url() . 'themes/cache/'.$hash.'.css" media="screen" />';
+					log_message('debug', 'Assets pipeline created file: '. $final_css_file);
 				}
 				else
 				{
@@ -151,6 +153,7 @@ class Assets_pipeline
 						if (!file_exists($final_css_file))
 						{
 							file_put_contents($final_css_file, $CSSmin->run(file_get_contents($_SERVER['DOCUMENT_ROOT'].$file)));
+							log_message('debug', 'Assets pipeline created file: '. $final_css_file);
 						}
 						$output .= '<link rel="stylesheet" type="text/css" href="'. base_url() . 'themes/cache/'.$hash.'.css" media="screen" />';
 					}
@@ -221,6 +224,7 @@ class Assets_pipeline
 				if (!file_exists($final_js_file))
 				{
 					file_put_contents($final_js_file, JSMin::minify($js_code));
+					log_message('debug', 'Assets pipeline created file: '. $final_js_file);
 				}
 				$output .= '<script type="text/javascript" src="'. base_url() . 'themes/cache/' . $hash . '.js"></script>';
 			}
@@ -228,6 +232,7 @@ class Assets_pipeline
 			{
 				$final_u_js_file = $_SERVER['DOCUMENT_ROOT'].'/themes/cache/u_'.$hash.'.js';
 				file_put_contents($final_u_js_file, $js_code);
+				log_message('debug', 'Assets pipeline created file: '. $final_u_js_file);
 				$output .= '<script type="text/javascript" src="'. base_url() . 'themes/cache/u_' . $hash . '.js"></script>';
 			}
 			
@@ -252,6 +257,7 @@ class Assets_pipeline
 						if (!file_exists($final_js_file))
 						{
 							file_put_contents($final_js_file, JSMin::minify(file_get_contents($_SERVER['DOCUMENT_ROOT'].$file)));
+							log_message('debug', 'Assets pipeline created file: '. $final_js_file);
 						}
 						$output .= '<script type="text/javascript" src="'. base_url() . 'themes/cache/'.$hash.'.js"></script>';
 					}
