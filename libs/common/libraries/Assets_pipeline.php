@@ -6,6 +6,7 @@ class Assets_pipeline
 	function __construct()
 	{
 		$this->ci = &get_instance();
+		$this->_validate_cache_dir();
 		log_message('debug', 'Assets_pipeline class Initialized');
 	}
 	
@@ -279,5 +280,29 @@ class Assets_pipeline
 	
 	
 	
+	/*
+	 * Creates a /themes/cache folder, if it does not exist
+	* and informs the user of possible permission issues
+	*/
+	function _validate_cache_dir()
+	{
+		// Create the cache folder if it does not exist
+		if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/themes/cache'))
+		{
+			// Check that the /themes dir is in place and that there are sufficient rights to create the cache dir
+			if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/themes'))
+			{
+				die ('No /themes directory found. Please create a /themes directory in the root of your project.');
+			}
+			elseif (!is_writable($_SERVER['DOCUMENT_ROOT'].'/themes'))
+			{
+				die ('Please set write permissions for the user running your webserver, for directory /themes');
+			}
+			else
+			{
+				mkdir($_SERVER['DOCUMENT_ROOT'].'/themes/cache');
+			}
+		}
+	}
 	
 }
