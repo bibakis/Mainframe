@@ -86,9 +86,17 @@ function post($item = false)
 
 /*
  * Shorthand for $this->session->userdata('something')
+ * If requested without parameters, it returns all session data
  */
 function session($item = false)
 {
 	$ci =& get_instance();
-	return $ci->session->userdata($item);
+	if ($item)
+	{
+		return $ci->session->userdata($item);
+	}
+	else {
+		return $ci->session->all_userdata();
+	}
+	
 }
