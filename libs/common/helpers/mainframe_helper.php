@@ -85,7 +85,17 @@ function post($item = false)
 
 
 /*
- * Shorthand for $this->session->userdata('something')
+ * Shorthand for $this->config->item($item)
+*/
+function config($item)
+{
+	$ci =& get_instance();
+	return $ci->config->item($item);
+}
+
+
+/*
+ * Shorthand for $this->session->userdata($item)
  * If requested without parameters, it returns all session data
  */
 function session($item = false)
