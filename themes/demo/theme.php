@@ -11,7 +11,7 @@
 	<?php css('/themes/demo/css/styles.css', 'last');?>
 	<?php css('http://yui.yahooapis.com/3.5.0/build/cssgrids/grids-min.css', 'last');?>
 	
-	<?php js('/libs/js/jquery-1.7.min.js', 'first');?>
+	<?php js('/libs/js/jquery-2.1.3.min.js', 'first');?>
 	
 	<?php echo $this->load->assets();?>
 </head>

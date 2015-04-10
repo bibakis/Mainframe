@@ -5,7 +5,7 @@
 	<meta name="keywords" content="" />
 	<meta name="language" content="en" />
 	<title>Mainframe - The complete PHP framework</title>
-	<script type="text/javascript" src="/libs/js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="/libs/js/jquery-2.1.3.min.js"></script>
 	<?php $this->load->view('mainframe.js.php');?>
 	<?php $this->load->css('/libs/css/mainframe.css/mainframe-grid.css');?>
 	<?php $this->load->css('/libs/css/mainframe.css/mainframe-main.css');?>

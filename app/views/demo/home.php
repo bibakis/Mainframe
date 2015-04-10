@@ -7,7 +7,6 @@
 		<br>
 		<ul class="main_menu">
 			<li><a href="http://mainframephp.com/page/documentation">Documentation</a></li>
-			<li><a href="http://mainframephp.com/">Mainframe home page</a></li>
 		</ul>
 		
 		<?php if (session('user_id')):?>
