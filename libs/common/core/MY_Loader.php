@@ -125,18 +125,19 @@ class MY_Loader extends CI_Loader {
 			$data['includes'] = '';
 			
 			$this->css_files = array_unique($this->css_files);
-			
-			$leading_slash = false;
-			
+			$key = 0;
 			foreach ($this->css_files as $css_file)
 			{
-				$data['includes'] .= '<link rel="stylesheet" type="text/css" href="'.$css_file.'" media="screen" /> ';
+				$data['includes'] .= '<link rel="stylesheet" type="text/css" href="'.$css_file[$key].'" media="screen" /> ';
+				$key++;
 			}
 			
 			$this->js_files = array_unique($this->js_files);
+			$key = 0;
 			foreach ($this->js_files as $js_file)
 			{
-				$data['includes'] .= '<script type="text/javascript" src="'.$js_file.'"></script>';
+				$data['includes'] .= '<script type="text/javascript" src="'.$js_file[$key].'"></script>';
+				$key++;
 			}
 
 			$this->loading_theme = true;
