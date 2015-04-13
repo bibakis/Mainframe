@@ -243,7 +243,8 @@ class MY_Loader extends CI_Loader {
 			@mkdir($css_path, 0777, true);
 			
 			// Compile the $less file onto $css
-			lessc::ccompile($less, $css);			
+			$lessc = new lessc;
+			$lessc->checkedCompile($less, $css);
 
 			
 			if (!$order)
