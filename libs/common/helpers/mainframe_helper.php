@@ -69,7 +69,18 @@ function now_mysql(){
 }
 
 
-
+/*
+ * Returns a 404 error if the request is not AJAX
+* Should be used in the start of AJAX related functions to avoid nesting code under ifs
+*/
+function ajax_filter()
+{
+	$ci = & get_instance();
+	if (!$ci->input->is_ajax_request())
+	{
+		show_404();
+	}
+}
 
 
 // Shorthands !
