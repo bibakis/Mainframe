@@ -75,7 +75,7 @@ using any ugly tricks like <br> or inline styles. Use any of these instead of .c
 /* Typography (Feel free to edit bellow this line)
 ----------------------------------------------------------------------------------------------------*/
 html		{min-height: 100%;height:100% !important;height:100%;} /* Making backgrounds work properly*/
-body		{font:13px/1.231 arial,helvetica,clean,sans-serif; *font-size:small; /* for IE6/7 */ *font:x-small; /* for IE Quirks Mode */ min-height: 100%;height:auto !important;height:100%;}
+body		{min-height: 100%;height:auto !important;height:100%;}
 /* Nudge down to get to 13px equivalent for these form elements */
 select, input, button, textarea	{font:99% inherit; border: 1px solid #aaa;}
 input, button {padding: 2px;}

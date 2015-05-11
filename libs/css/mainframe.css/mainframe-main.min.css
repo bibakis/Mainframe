@@ -39,7 +39,7 @@ p{text-align:left}
 .clear90{height:90px;clear:both}
 .clear100{height:100px;clear:both}
 html{min-height:100%;height:100%!important;height:100%}
-body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;min-height:100%;height:auto!important;height:100%}
+body{min-height:100%;height:auto!important;height:100%}
 select,input,button,textarea{font:99% inherit;border:1px solid #aaa}
 input,button{padding:2px}
 textarea{padding:4px}
