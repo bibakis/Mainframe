@@ -52,8 +52,15 @@ function validate($rules = array())
 
 	$ci->load->library('form_validation');
 
-	foreach ($rules as $rule){
-		$ci->form_validation->set_rules($rule, $rule, 'required');
+	foreach ($rules as $rule)
+	{
+		if($rule == 'email') 
+		{
+			$ci->form_validation->set_rules($rule, $rule, 'trim|valid_email');
+		} else 
+		{
+			$ci->form_validation->set_rules($rule, $rule, 'required');
+		}
 	}
 
 	return $ci->form_validation->run();
