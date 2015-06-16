@@ -45,7 +45,7 @@
 */
 
 $active_group = 'local';
-$active_record = TRUE;
+$query_builder = TRUE;
 
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'soft_mainframe';
