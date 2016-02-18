@@ -2,6 +2,4 @@
 .settings
 Thumbs.db
 /.buildpath
-/app/logs
 /themes/cache
-/libs/temp/sessions
