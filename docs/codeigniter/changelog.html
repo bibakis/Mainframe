@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.1.3</h1></td>
+<td><h1>CodeIgniter User Guide Version 2.2.6</h1></td>
 <td id="breadcrumb_right"><a href="./toc.html">Table of Contents Page</a></td>
 </tr>
 </table>
@@ -56,6 +56,138 @@ Change Log
 <div id="content">
 
 <h1>Change Log</h1>
+
+
+<h2>Version 2.2.6</h2>
+<p>Release Date: October 31, 2015</p>
+
+<ul>
+	<li><b>Security</b>
+		<ul>
+			<li>Fixed an XSS attack vector in <a href="libraries/security.html">Security Library</a> method <samp>xss_clean()</samp>.</li>
+			<li>Changed <a href="libraries/config.html">Config Library</a> method <samp>base_url()</samp> to fallback to ``$_SERVER['SERVER_ADDR']`` in order to avoid Host header injections.</li>
+			<li>Changed <a href="helpers/captcha_helper.html">CAPTCHA Helper</a> to try to use the operating system's PRNG first.</a>
+		</ul>
+	</li>
+</ul>
+
+<h2>Version 2.2.5</h2>
+<p>Release Date: October 8, 2015</p>
+
+<ul>
+	<li><b>Security</b>
+		<ul>
+			<li>Fixed a number of XSS attack vectors in <a href="libraries/security.html">Security Library</a> method <samp>xss_clean()</samp> (thanks to Frans Rosén from <a href="https://detectify.com/">Detectify</a>).</li>
+		</ul>
+	</li>
+</ul>
+
+<h2>Version 2.2.4</h2>
+<p>Release Date: August 20, 2015</p>
+
+<ul>
+	<li><b>Security</b>
+		<ul>
+			<li>Fixed an SQL injection vulnerability in <a href="database/active_record.html">Active Record</a> method <samp>offset()</samp>.</li>
+		</ul>
+	</li>
+</ul>
+
+<h2>Version 2.2.3</h2>
+<p>Release Date: July 14, 2015</p>
+
+<ul>
+	<li><b>Security</b>
+		<ul>
+			<li>Removed a fallback to <samp>mysql_escape_string()</samp> in the 'mysql' database driver (<samp>escape_str()</samp> method) when there's no active database connection.</li>
+		</ul>
+	</li>
+</ul>
+
+<h2>Version 2.2.2</h2>
+<p>Release Date: April 15, 2015</p>
+
+<ul>
+	<li><b>Security</b>
+		<ul>
+			<li>Added HTTP "Host" header character validation to prevent cache poisoning attacks when <kbd>base_url</kbd> auto-detection is used.</li>
+			<li>Added <kbd>FSCommand</kbd> and <kbd>seekSegmentTime</kbd> to the "evil attributes" list in <samp>CI_Security::xss_clean()</samp>.</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>Bug fixes:</h3>
+<ul>
+	<li>Fixed a bug (#3665) - <samp>CI_Security::entity_decode()</samp> triggered warnings under some circumstances.</li>
+</ul>
+
+<h2>Version 2.2.1</h2>
+<p>Release Date: January 22, 2015</p>
+
+<ul>
+	<li>General Changes
+		<ul>
+			<li>Improved security in <kbd>xss_clean()</kbd>.</li>
+			<li>Updated timezones in <a href="helpers/date_helper.html">Date Helper</a>.</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>Bug fixes:</h3>
+<ul>
+	<li>Fixed a bug (#3094) - <samp>CI_Input::_clean_input_data()</samp> breaks encrypted session cookies.</li>
+	<li>Fixed a bug (#2268) - <samp>CI_Security::xss_clean()</samp> didn't properly match JavaScript events.</li>
+	<li>Fixed a bug (#3309) - <samp>CI_Security::xss_clean()</samp> used an overly-invasive pattern to strip JS event handlers.</li>
+	<li>Fixed a bug (#2771) - <samp>CI_Security::xss_clean()</samp> didn't take into account HTML5 entities.</li>
+	<li>Fixed a bug (#73) - <samp>CI_Security::sanitize_filename()</samp> could be tricked by an XSS attack.</li>
+	<li>Fixed a bug (#2681) - <samp>CI_Security::entity_decode()</samp> used the PREG_REPLACE_EVAL flag, which is deprecated since PHP 5.5.</li>
+	<li>Fixed a bug (#3302) - Internal function <samp>get_config()</samp> triggered an E_NOTICE message on PHP 5.6.</li>
+	<li>Fixed a bug (#2508) - <a href="libraries/config.html">Config Library</a> didn't properly detect if the current request is via HTTPS.</li>
+	<li>Fixed a bug (#3314) - SQLSRV <a href="database/index.html">Database driver</a>'s method <samp>count_all()</samp> didn't escape the supplied table name.</li>
+	<li>Fixed a bug (#3404) - MySQLi <a href="database/index.html">Database driver</a>'s method <samp>escape_str()</samp> had a wrong fallback to <samp>mysql_escape_string()</samp> when there was no active connection.</li>
+	<li>Fixed a bug in the <a href="libraries/sessions.html">Session Library</a> where session ID regeneration occurred during AJAX requests.</li>
+</ul>
+
+<h2>Version 2.2.0</h2>
+<p>Release Date: June 5, 2014</p>
+
+<ul>
+	<li>General Changes
+		<ul>
+			<li><b>Security:</b> The <samp>xor_encode()</samp> method in the Encrypt Class has been removed. The Encrypt Class now requires the Mcrypt extension to be installed.</li>
+			<li><b>Security:</b> The <a href="libraries/sessions.html">Session Library</a> now uses HMAC authentication instead of a simple MD5 checksum.</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>Bug fixes for 2.2.0:</h3>
+<ul>
+	<li>Fixed an edge case (#2583) in the <a href="libraries/email.html">Email Library</a> where <a href="http://www.hardened-php.net/suhosin/">Suhosin</a> blocked messages sent via <samp>mail()</samp> due to trailing newspaces in headers.</li>
+	<li>Fixed a bug (#696) - make <samp>oci_execute()</samp> calls inside <samp>num_rows()</samp> non-committing, since they are only there to reset which row is next in line for oci_fetch calls and thus don't need to be committed.</li>
+	<li>Fixed a bug (#2689) - <a href="database/forge.html">Database Forge Class</a> methods <samp>create_table()</samp>, <samp>drop_table()</samp> and <samp>rename_table()</samp> produced broken SQL for tge 'sqlsrv' driver.</li>
+	<li>Fixed a bug (#2427) - PDO <a href="database/index.html">Database driver</a> didn't properly check for query failures.</li>
+	<li>Fixed a bug in the <a href="libraries/sessions.html">Session Library</a> where authentication was not performed for encrypted cookies.</li>
+</ul>
+
+<h2>Version 2.1.4</h2>
+<p>Release Date: July 8, 2013</p>
+
+<ul>
+	<li>General Changes
+		<ul>
+			<li>Improved security in <kbd>xss_clean()</kbd>.</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>Bug fixes for 2.1.4:</h3>
+<ul>
+	<li>Fixed a bug (#1936) - <a href="libraries/migration.html">Migrations Library</a> method <samp>latest()</samp> had a typo when retrieving language values.</li>
+	<li>Fixed a bug (#2021) - <a href="libraries/migration.html">Migrations Library</a> configuration file was mistakenly using Windows style line feeds.</li>
+	<li>Fixed a bug (#1273) - <a href="database/active_record.html">Active Record</a> method <samp>set_update_batch()</samp> was using the incorrect variables and would cause an error.</li>
+	<li>Fixed a bug (#2337) - <a href="libraries/email.html">Email Library</a> method <samp>print_debugger()</samp> was not using <samp>htmlspecialchars()</samp> when being shown in the browser.</li>
+</ul>
+
 
 <h2>Version 2.1.3</h2>
 <p>Release Date: October 8, 2012</p>
@@ -1292,7 +1424,7 @@ Hg Tag: 1.6.1</p>
 
 <ul>
 <li>Added <a href="./general/hooks.html">Hooks</a> feature, enabling you to tap into and modify the inner workings of the framework without hacking the core files.</li>
-<li>Added the ability to organize controller files <a href="./general/controllers.html">into sub-folders</a>.  Kudos to Marco for <a href="http://codeigniter.com/forums/viewthread/627/">suggesting</a> this (and the next two) feature.</li>
+<li>Added the ability to organize controller files <a href="./general/controllers.html">into sub-folders</a>.  Kudos to Marco for suggesting this (and the next two) feature.</li>
 <li>Added regular expressions support for <a href="./general/routing.html">routing rules</a>.</li>
 <li>Added the ability to <a href="./general/controllers.html">remap function calls</a> within your controllers.</li>
 <li>Added the ability to <a href="./general/core_classes.html">replace core system classes</a> with your own classes.</li>
@@ -1497,7 +1629,7 @@ Previous Topic:&nbsp;&nbsp;<a href="license.html">License Agreement</a>
 <a href="index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 Next Topic:&nbsp;&nbsp;<a href="./general/credits.html">Credits</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2012 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2014 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a> &nbsp;&middot;&nbsp; Copyright &#169; 2014 - 2015 &nbsp;&middot;&nbsp; <a href="http://bcit.ca/">British Columbia Institute of Technology</a></p>
 </div>
 
 </body>
